@@ -1,39 +1,40 @@
 package ebus.controller;
 import java.util.Date;
+import javafx.beans.property.SimpleStringProperty;
 public class Problem {
-    private String name,detail,status,type;
+    private SimpleStringProperty  name,detail,status,type;
     private Date date;
     public String getName() {
-        return name;
+        return name.get();
     }
     public String getDetail() {
-        return detail;
+        return detail.get();
     }
     public String getStatus() {
-        return status;
+        return status.get();
     }
     public String getType() {
-        return type;
+        return type.get();
     }
     public Date getDate() {
         return date;
     }
     public void setName(String name) {
-        this.name = name;
+        this.name.set(name);
     }
     public void setDetail(String detail) {
-        this.detail = detail;
+        this.detail.set(detail);
     }
     public void setStatus(String status) {
-        this.status = status;
+        this.status.set(status);
     }
     public void setType(String type) {
-        this.type = type;
+        this.type.set(type);
     }
     public void setDate(Date date) {
         this.date = date;
     }
     public String toString() {
-        return "name=" + name + "\ndetail=" + detail + "\nstatus=" + status + "\ntype=" + type + "\ndate=" + date ;
+        return "name=" + name.get() + "\ndetail=" + detail.get() + "\nstatus=" + status.get() + "\ntype=" + type.get() + "\ndate=" + date ;
     }
 }

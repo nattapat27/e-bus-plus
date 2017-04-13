@@ -2,8 +2,14 @@ package ebus.model;
 import ebus.controller.Problem;
 import java.sql.*;
 import java.util.ArrayList;
+import javafx.collections.ObservableList;
 public class Connect {
-    protected static ArrayList<Problem> allProblem = new ArrayList();
+    protected static ObservableList<Problem> allProblem;
+
+    public static ObservableList<Problem> getAllProblem() {
+        return allProblem;
+    }
+    
     public static void setProblem() {
         try{
             Class.forName("org.mariadb.jdbc.Driver");
@@ -19,6 +25,7 @@ public class Connect {
                 p.setDate(rsProblem.getDate("problem_date"));
                 //p.setType(rsStatus.getString(rsProblem.getInt("status_id")));
                 //p.setType(rsType.getString(rsProblem.getInt("type_id")));
+                
                 allProblem.add(p);
             }
             connect.close();

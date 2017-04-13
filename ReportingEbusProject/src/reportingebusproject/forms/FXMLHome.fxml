@@ -78,12 +78,12 @@
             </Label>
             <TableView layoutX="40.0" layoutY="75.0" prefHeight="400.0" prefWidth="720.0" style="-fx-background-color: #ffe4b5;">
               <columns>
-                <TableColumn prefWidth="120.0" text="No." />
-                <TableColumn prefWidth="120.0" text="Date" />
+                <TableColumn fx:id="proId" prefWidth="120.0" text="No." />
+                <TableColumn fx:id="proDate" prefWidth="120.0" text="Date" />
                   <TableColumn minWidth="0.0" prefWidth="0.0" text="Column X" />
-                  <TableColumn prefWidth="120.0" text="Problem" />
-                  <TableColumn prefWidth="120.0" text="Type" />
-                  <TableColumn prefWidth="120.0" text="Status" />
+                  <TableColumn fx:id="problem" prefWidth="120.0" text="Problem" />
+                  <TableColumn fx:id="proType" prefWidth="120.0" text="Type" />
+                  <TableColumn fx:id="proStatus" prefWidth="120.0" text="Status" />
                   <TableColumn prefWidth="120.0" text="Action" />
               </columns>
             </TableView>
