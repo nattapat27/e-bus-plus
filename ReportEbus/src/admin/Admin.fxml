@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="adminController">
+   <children>
+      <Button fx:id="graphButtton" layoutX="82.0" layoutY="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="graph" AnchorPane.leftAnchor="50.0" />
+      <TableView fx:id="table" layoutX="33.0" layoutY="149.0" prefHeight="421.0" prefWidth="735.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+        <columns>
+          <TableColumn fx:id="problemId" prefWidth="75.0" text="No." />
+          <TableColumn fx:id="problemStatus" prefWidth="75.0" text="สถานะ" />
+            <TableColumn fx:id="problemName" prefWidth="349.0" text="หัวข้อปัญหา" />
+            <TableColumn fx:id="problemType" prefWidth="123.0" text="ประเภท" />
+            <TableColumn fx:id="action" prefWidth="77.0" text="โหวต" />
+        </columns>
+      </TableView>
+      <Button fx:id="logoutButton" layoutX="668.0" layoutY="50.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="logout" AnchorPane.rightAnchor="50.0" />
+   </children>
+</AnchorPane>

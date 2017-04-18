@@ -2,8 +2,15 @@ package ebus.controller;
 import java.util.Date;
 import javafx.beans.property.SimpleStringProperty;
 public class Problem {
-    private SimpleStringProperty  name,detail,status,type;
+    private final SimpleStringProperty  name,detail,status,type;
     private Date date;
+    public Problem(String name,String detail,String status,String type,Date date) {
+        this.name = new SimpleStringProperty(name);
+        this.detail = new SimpleStringProperty(detail);
+        this.status = new SimpleStringProperty(status);
+        this.type = new SimpleStringProperty(type);
+        this.date = date;
+    }
     public String getName() {
         return name.get();
     }

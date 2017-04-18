@@ -2,9 +2,12 @@ package ebus.model;
 import ebus.controller.Problem;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 public class Connect {
-    protected static ObservableList<Problem> allProblem;
+    private static List<Problem> list = new ArrayList<Problem>();
+    protected static ObservableList<Problem> allProblem = FXCollections.observableArrayList(list);
 
     public static ObservableList<Problem> getAllProblem() {
         return allProblem;
@@ -16,18 +19,24 @@ public class Connect {
             Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
             Statement st = connect.createStatement();
             ResultSet rsProblem = st.executeQuery("select * from problem");
-            ResultSet rsStatus = st.executeQuery("select * from status");
-            ResultSet rsType = st.executeQuery("select * from type");
+            ResultSet rsStatus = st.executeQuery("select status.status_name from status inner join problem on problem.status_id=status.status_id");//Select * from DB Where foreKey = findKey
+            ResultSet rsType = st.executeQuery("select type.type_name from type inner join problem on problem.type_id=type.type_id");
+            String name = null;
+            String detail = null;
+            String status = null;
+            String type = null;
+            Date date = null;
             while(rsProblem.next()){
-                Problem p = new Problem();
-                p.setName(rsProblem.getString("problem_name"));
-                p.setDetail(rsProblem.getString("description"));
-                p.setDate(rsProblem.getDate("problem_date"));
-                //p.setType(rsStatus.getString(rsProblem.getInt("status_id")));
-                //p.setType(rsType.getString(rsProblem.getInt("type_id")));
-                
-                allProblem.add(p);
+                name = rsProblem.getString("problem_name");
+                detail = rsProblem.getString("description");
+                date = rsProblem.getDate("problem_date");
             }
+            while(rsStatus.next())    
+                status = rsStatus.getString("status_name");
+            while(rsType.next())
+                type = rsType.getString("type_name");
+            Problem p = new Problem(name, detail, status, type, date);
+            allProblem.add(p);
             connect.close();
         }catch(ClassNotFoundException e){
             System.out.println(e);
@@ -55,10 +64,5 @@ public class Connect {
     }
     public static void main(String[] args) {
         setProblem();
-        for(Problem p : allProblem)
-            System.out.println(p);
-        addProblem("Test","Testdetail",null, 0, 0);
-        for(Problem p : allProblem)
-            System.out.println(p);
     }
 }
