@@ -18,6 +18,7 @@ public class JavaFXApplication3 extends Application {
         stage.show();
     }
     public static void main(String[] args) {
+        System.out.println("hello");
         launch(args);
     }
     
