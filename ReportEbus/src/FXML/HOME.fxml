@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFD700;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ebusController.controll">
    <children>
-      <AnchorPane prefHeight="100.0" prefWidth="800.0" style="-fx-background-color: #FF8C00; -fx-border-color: #000000;">
+      <AnchorPane prefHeight="100.0" prefWidth="812.0" style="-fx-background-color: #FF8C00; -fx-border-color: #000000;">
          <children>
             <Button fx:id="homeButton" layoutX="48.0" layoutY="26.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Home" AnchorPane.leftAnchor="48.0">
                <graphic>

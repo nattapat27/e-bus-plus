@@ -10,7 +10,7 @@ public class JavaFXApplication3 extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("addProblem.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("HOME.fxml"));
         
         Scene scene = new Scene(root);
         
