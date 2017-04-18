@@ -1,4 +1,4 @@
-package FXML;
+package addProblem;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,10 +10,11 @@ public class JavaFXApplication3 extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("addProblem.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("addProblemFXML.fxml"));
         
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root,800,600);
         
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
