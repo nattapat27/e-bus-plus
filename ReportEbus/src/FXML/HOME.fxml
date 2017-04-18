@@ -1,36 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ebusController.controll">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFD700;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ebusController.controll">
    <children>
-      <AnchorPane prefHeight="101.0" prefWidth="800.0">
+      <AnchorPane prefHeight="101.0" prefWidth="800.0" style="-fx-background-color: #FF8C00; -fx-border-color: #000000;">
          <children>
-            <Button fx:id="homeButton" layoutX="48.0" layoutY="37.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Home" AnchorPane.leftAnchor="48.0" />
-            <Button fx:id="reportButton" layoutX="197.0" layoutY="37.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Report" AnchorPane.leftAnchor="197.0" />
-            <Button fx:id="adminButton" layoutX="653.0" layoutY="37.0" mnemonicParsing="false" prefHeight="61.0" prefWidth="129.0" text="Admin" AnchorPane.rightAnchor="47.0">
+            <Button fx:id="homeButton" layoutX="48.0" layoutY="26.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Home" AnchorPane.leftAnchor="48.0">
                <graphic>
-                  <ImageView fitHeight="51.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/HomeImage.png" />
+                     </image>
+                  </ImageView>
                </graphic>
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Button fx:id="reportButton" layoutX="209.0" layoutY="26.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Report" AnchorPane.leftAnchor="209.0">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ProblemImage.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <font>
+                  <Font size="18.0" />
+               </font></Button>
+            <Button fx:id="adminButton" layoutX="623.0" layoutY="26.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Admin" AnchorPane.rightAnchor="47.0">
+               <graphic>
+                  <ImageView fitHeight="35.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/AdminImage.png" />
+                     </image></ImageView>
+               </graphic>
+               <font>
+                  <Font size="18.0" />
+               </font>
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="94.0" prefHeight="507.0" prefWidth="800.0">
-         <children>
-            <TableView fx:id="table" layoutX="50.0" layoutY="37.0" prefHeight="421.0" prefWidth="735.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
-              <columns>
-                <TableColumn fx:id="problemId" prefWidth="75.0" text="No." />
-                <TableColumn fx:id="problemStatus" prefWidth="75.0" text="สถานะ" />
-                  <TableColumn fx:id="problemName" prefWidth="349.0" text="หัวข้อปัญหา" />
-                  <TableColumn fx:id="problemType" prefWidth="123.0" text="ประเภท" />
-                  <TableColumn fx:id="action" prefWidth="77.0" text="โหวต" />
-              </columns>
-            </TableView>
-         </children>
-      </AnchorPane>
+      <TableView fx:id="table" layoutX="50.0" layoutY="154.0" prefHeight="421.0" prefWidth="735.0" style="-fx-background-color: #ffe4b5;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
+        <columns>
+          <TableColumn fx:id="problemId" prefWidth="75.0" text="No." />
+          <TableColumn fx:id="problemStatus" prefWidth="75.0" text="สถานะ" />
+            <TableColumn fx:id="problemName" prefWidth="349.0" text="หัวข้อปัญหา" />
+            <TableColumn fx:id="problemType" prefWidth="123.0" text="ประเภท" />
+            <TableColumn fx:id="action" prefWidth="77.0" text="โหวต" />
+        </columns>
+      </TableView>
+      <Label layoutX="50.0" layoutY="112.0" text="Problem">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
