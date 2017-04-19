@@ -14,6 +14,10 @@ public class Connect {
     }
     
     public static void setProblem() {
+        int l = allProblem.size();
+        for(int i=0;i<l;i++){
+            allProblem.remove(0);
+        }
         try{
             Class.forName("org.mariadb.jdbc.Driver");
             Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
