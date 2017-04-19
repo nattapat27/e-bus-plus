@@ -7,6 +7,10 @@ package addProblem;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,13 +50,15 @@ public class AddProblemFXMLController implements Initializable {
     @FXML
     private Button Report;
     @FXML
-    private ComboBox<?> typesBox;
+    private ComboBox<String> typesBox;
     @FXML
     private CheckBox follow;
     @FXML
     private TextField mail;
     @FXML
     private Text textMail;
+    @FXML
+    private Text textAlert;
     @FXML
     public void handleHomeAction(ActionEvent event)throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/home/HOME.fxml"));
@@ -83,20 +89,46 @@ public class AddProblemFXMLController implements Initializable {
     }
     @FXML
     public void handleSentAction(ActionEvent event)throws IOException{
-        String name = probleamName.getText();
-        System.out.println(name);
+        //System.out.println((String)typesBox.getValue());
+        if(probleamName.getText()!=null && problemDescription.getText()!=null && dateSet.getValue()!=null
+            && (String)typesBox.getValue()!=null ){
+            
+            String name = probleamName.getText();
+            probleamName.clear();
+            
+            String detail = problemDescription.getText();
+            problemDescription.clear();
+            
+            LocalDate localDate = dateSet.getValue();
+            Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+            Date date = Date.from(instant);
+            dateSet.getEditor().clear();
+            
+            String type = (String)typesBox.getValue();
+            typesBox.getSelectionModel().clearSelection();
+            
+            String email = null;
+            if(follow.isSelected()){    
+                email = mail.getText();
+                follow.setSelected(false);
+                mail.setVisible(false);
+                textMail.setVisible(false);
+            }
+            mail.clear();
+            
+        }
+        else
+            textAlert.setVisible(true);
     }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        if(follow.isSelected()){
-            mail.setVisible(true);
-            textMail.setVisible(true);
-        }
-        else{
-            mail.setVisible(false);
-            textMail.setVisible(false);
-        }
+        textAlert.setVisible(false);
+        mail.setVisible(false);
+        textMail.setVisible(false);
+        typesBox.getItems().removeAll(typesBox.getItems());
+        typesBox.getItems().addAll("ปัญหารถ", "ปัญหาคนขับ", "ปัญหาแอพ", "อื่นๆ");
+        //typesBox.getSelectionModel().select("Option B");
     }    
 
     @FXML
