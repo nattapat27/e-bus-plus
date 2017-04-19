@@ -17,7 +17,7 @@
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="812.0" style="-fx-background-color: #FF8C00; -fx-border-color: #000000;">
          <children>
-            <Button fx:id="homeButton" layoutX="48.0" layoutY="26.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Home" AnchorPane.leftAnchor="48.0">
+            <Button fx:id="homeButton" onAction="#handleHomeAction" layoutX="48.0" layoutY="26.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Home" AnchorPane.leftAnchor="48.0">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -29,7 +29,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="reportButton" layoutX="209.0" layoutY="26.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Report" AnchorPane.leftAnchor="209.0">
+            <Button fx:id="reportButton" onAction="#handleReportAction" layoutX="209.0" layoutY="26.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Report" AnchorPane.leftAnchor="209.0">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -41,7 +41,7 @@
                   <Font size="18.0" />
                </font>
             </Button>
-            <Button fx:id="adminButton" layoutX="623.0" layoutY="26.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Admin" AnchorPane.rightAnchor="47.0">
+            <Button fx:id="adminButton" onAction="#handleAdminAction" layoutX="623.0" layoutY="26.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Admin" AnchorPane.rightAnchor="47.0">
                <graphic>
                   <ImageView fitHeight="35.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                      <image>

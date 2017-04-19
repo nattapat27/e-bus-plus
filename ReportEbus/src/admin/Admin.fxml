@@ -21,7 +21,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button fx:id="logoutButton" layoutX="657.0" layoutY="25.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Logout" AnchorPane.rightAnchor="49.0">
+            <Button fx:id="logoutButton" onAction="#handleLogoutAction" layoutX="657.0" layoutY="25.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="130.0" text="Logout" AnchorPane.rightAnchor="49.0">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
