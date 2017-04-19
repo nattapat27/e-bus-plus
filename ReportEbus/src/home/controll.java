@@ -1,4 +1,4 @@
-package ebusController;
+package home;
 
 import ebus.controller.Problem;
 import ebus.model.Connect;

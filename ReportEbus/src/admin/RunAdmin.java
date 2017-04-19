@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class JavaFXApplication3 extends Application {
+public class RunAdmin extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
