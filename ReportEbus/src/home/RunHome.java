@@ -14,6 +14,7 @@ public class RunHome extends Application {
         
         Scene scene = new Scene(root,800,600);
         
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
