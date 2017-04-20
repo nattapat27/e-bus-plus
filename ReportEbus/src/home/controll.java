@@ -78,7 +78,6 @@ public class controll implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Connect.setProblem();
-        System.out.println(">>>"+new PropertyValueFactory("status"));
         ObservableList<Problem> allProblem = Connect.getAllProblem();
         problemId.setCellValueFactory(new PropertyValueFactory<>("id"));
         problemStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
