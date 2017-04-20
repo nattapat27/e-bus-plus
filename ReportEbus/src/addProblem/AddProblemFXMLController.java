@@ -5,6 +5,7 @@
  */
 package addProblem;
 
+import ebus.model.Connect;
 import java.io.IOException;
 import java.net.URL;
 import java.time.Instant;
@@ -107,15 +108,25 @@ public class AddProblemFXMLController implements Initializable {
             String type = (String)typesBox.getValue();
             typesBox.getSelectionModel().clearSelection();
             
+            int numOfType = 1;
+            if(type.equals("ปัญหารถ"))
+                numOfType = 1;
+            else if(type.equals("ปัญหาคนขับ"))
+                numOfType = 2;
+            else if(type.equals("ปัญหาแอพ"))
+                numOfType = 3;
+            else 
+                numOfType = 4;
+            
             String email = null;
             if(follow.isSelected()){    
-                email = mail.getText();
+                email = mail.getText(); 
                 follow.setSelected(false);
                 mail.setVisible(false);
                 textMail.setVisible(false);
             }
             mail.clear();
-            
+            Connect.addProblem(name, detail,date, 1, numOfType);
         }
         else
             textAlert.setVisible(true);

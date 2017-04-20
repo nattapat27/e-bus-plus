@@ -4,6 +4,9 @@ import javafx.beans.property.SimpleStringProperty;
 public class Problem {
     private final SimpleStringProperty  name,detail,status,type;
     private Date date;
+    public Problem(){
+        this(null,null,null,null,null);
+    }
     public Problem(String name,String detail,String status,String type,Date date) {
         this.name = new SimpleStringProperty(name);
         this.detail = new SimpleStringProperty(detail);

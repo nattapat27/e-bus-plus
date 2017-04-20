@@ -5,9 +5,12 @@
  */
 package admin;
 
+import ebus.controller.Problem;
+import ebus.model.Connect;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,6 +21,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 /**
@@ -32,17 +36,17 @@ public class adminController implements Initializable {
     @FXML
     private Button logoutButton;
     @FXML
-    private TableView<?> table;
+    private TableView<Problem> table;
     @FXML
-    private TableColumn<?, ?> problemId;
+    private TableColumn<Problem, String> problemId;
     @FXML
-    private TableColumn<?, ?> problemStatus;
+    private TableColumn<Problem, String> problemStatus;
     @FXML
-    private TableColumn<?, ?> problemName;
+    private TableColumn<Problem, String> problemName;
     @FXML
-    private TableColumn<?, ?> problemType;
+    private TableColumn<Problem, String> problemType;
     @FXML
-    private TableColumn<?, ?> action;
+    private TableColumn<Problem, String> action;
     
     public void handleLogoutAction(ActionEvent event)throws IOException{
         System.out.println(getClass().getResource("/home/HOME.fxml"));
@@ -60,6 +64,15 @@ public class adminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        Connect.setProblem();
+        System.out.println(">>>"+new PropertyValueFactory("status"));
+        ObservableList<Problem> allProblem = Connect.getAllProblem();
+        problemId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        problemStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+        problemName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        problemType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        action.setCellValueFactory(new PropertyValueFactory<>("detail"));        
+        table.getItems().setAll(allProblem);
     }    
     
 }
