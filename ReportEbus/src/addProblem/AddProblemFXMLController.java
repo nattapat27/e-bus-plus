@@ -62,7 +62,7 @@ public class AddProblemFXMLController implements Initializable {
     private Text textAlert;
     @FXML
     public void handleHomeAction(ActionEvent event)throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/home/HOME.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/home/Home.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setResizable(false);

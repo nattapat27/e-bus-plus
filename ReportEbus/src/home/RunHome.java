@@ -10,7 +10,7 @@ public class RunHome extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("HOME.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
         
         Scene scene = new Scene(root,800,600);
         

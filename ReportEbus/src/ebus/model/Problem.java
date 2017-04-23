@@ -1,4 +1,4 @@
-package ebus.controller;
+package ebus.model;
 import java.util.Date;
 import javafx.beans.property.SimpleStringProperty;
 public class Problem {

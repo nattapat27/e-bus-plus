@@ -1,5 +1,4 @@
 package ebus.model;
-import ebus.controller.Problem;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
