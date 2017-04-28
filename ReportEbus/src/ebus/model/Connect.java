@@ -3,6 +3,8 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 public class Connect {
@@ -15,9 +17,8 @@ public class Connect {
     
     public static void setProblem() {
         int l = allProblem.size();
-        for(int i=0;i<l;i++){
+        for(int i=0;i<l;i++)
             allProblem.remove(0);
-        }
         try{
             Class.forName("org.mariadb.jdbc.Driver");
             Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
@@ -77,7 +78,31 @@ public class Connect {
         
         
     }
+    public static boolean ckLogin(String user ,String password){
+        boolean result = false;
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
+            Statement st = connect.createStatement();
+            ResultSet rs = st.executeQuery("select user.password from user where user.user_id=\'"+user+"\'");
+            //String newPassword = null;
+            while(rs.next()){
+                System.out.println(">>");
+                if(rs.getString("user.password").equals(password)){
+                    result = true;
+                    break;
+                }
+            }
+            connect.close();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
     public static void main(String[] args) {
-        setProblem();
+        //setProblem();
+        System.out.println(ckLogin("57130500080", "1234"));
     }
 }
