@@ -65,7 +65,12 @@ public class LoginController implements Initializable {
             stage.show();
         }
         else{//user
-            
+            Parent root = FXMLLoader.load(getClass().getResource("/home/Home.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            ((Node)(event.getSource())).getScene().getWindow().hide();
+            stage.show();
         }
     }
 
