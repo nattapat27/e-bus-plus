@@ -74,7 +74,7 @@ public class Connect {
             System.out.println(ex);
         }
     }
-    public static void addUser(int problemId,String email){
+    public static void addAction(int problemId,String email){
         
         
     }
@@ -108,6 +108,7 @@ public class Connect {
             Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
             Statement st = connect.createStatement();
             ResultSet rs = st.executeQuery("select user.user_id from user where user.user_id=\'"+user+"\'");
+            System.out.println(">>>");
             //String newPassword = null;
             while(rs.next()){
                 if(rs.getString("user.user_id").equals(user)){
@@ -123,8 +124,33 @@ public class Connect {
         }
         return result;
     }
+    public static void addUser(String user_id, String password, String email, String fname, String lname, String tel){
+        try{
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
+//            Statement st = connect.createStatement();
+//            st.executeUpdate("insert into problem value("+"'"+name+"',"+"'"+date+"',"+"'"+detail+"',"+statu+","+type+")");
+            PreparedStatement ps = connect.prepareStatement("insert into user(user_id,email,fname,lname,tel,password,user_role_id) value(?,?,?,?,?,?,?)");
+            ps.setString(1, user_id);
+            ps.setString(2, email);
+            ps.setString(3, fname);
+            ps.setString(4, lname);
+            ps.setString(5, tel);
+            ps.setString(6, password);
+            ps.setInt(7, 2);
+            ps.execute();
+               
+            connect.close();
+            setProblem();
+        }catch(ClassNotFoundException e){
+            System.out.println(e);
+        }catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
     public static void main(String[] args) {
         //setProblem();
-        System.out.println(ckLogin("57130500080", "1234"));
+        if(ckUser("59130500027"))    
+            addUser("5913500027", "benzbenz", "nattapat27@gmail.com", "nattapat", "mapu", "0877333617");
     }
 }
