@@ -38,5 +38,10 @@
             </Text>
          </children>
       </AnchorPane>
+      <Button fx:id="homeButton" layoutX="100.0" layoutY="37.0" mnemonicParsing="false" onAction="#handleHomeAction" prefHeight="50.0" prefWidth="130.0" text="Home">
+         <font>
+            <Font name="Angsana New" size="23.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

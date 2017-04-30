@@ -14,4 +14,13 @@ public class Login {
         }
         return result;
     }
+
+    public static boolean isIslogin() {
+        return islogin;
+    }
+
+    public static void setIslogin(boolean islogin) {
+        Login.islogin = islogin;
+    }
+    
 }

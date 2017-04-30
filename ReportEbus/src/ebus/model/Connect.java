@@ -101,6 +101,28 @@ public class Connect {
         }
         return result;
     }
+    public static boolean ckUser(String user){
+        boolean result = true;
+        try {
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
+            Statement st = connect.createStatement();
+            ResultSet rs = st.executeQuery("select user.user_id from user where user.user_id=\'"+user+"\'");
+            //String newPassword = null;
+            while(rs.next()){
+                if(rs.getString("user.user_id").equals(user)){
+                    result = false;
+                    break;
+                }
+            }
+            connect.close();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return result;
+    }
     public static void main(String[] args) {
         //setProblem();
         System.out.println(ckLogin("57130500080", "1234"));
