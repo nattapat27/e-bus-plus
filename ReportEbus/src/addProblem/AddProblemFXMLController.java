@@ -127,6 +127,7 @@ public class AddProblemFXMLController implements Initializable {
             }
             mail.clear();
             Connect.addProblem(name, detail,date, 1, numOfType);
+            Connect.addAction(Connect.positionProblem(name), Connect.getUser());
         }
         else
             textAlert.setVisible(true);

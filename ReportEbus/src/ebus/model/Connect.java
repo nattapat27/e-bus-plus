@@ -81,9 +81,10 @@ public class Connect {
         try{
             Class.forName("org.mariadb.jdbc.Driver");
             Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
-            PreparedStatement ps = connect.prepareStatement("insert into user_action_problem(problem_id,user_id) value(?,?)");
-            ps.setInt(1, problemId);
-            ps.setString(2, user);
+            PreparedStatement ps = connect.prepareStatement("insert into user_action_problem(action_id,problem_id,user_id) value(?,?,?)");
+            ps.setInt(2, problemId);
+            ps.setString(3, user);
+            ps.setInt(1,1);
             ps.execute();
                
             connect.close();
