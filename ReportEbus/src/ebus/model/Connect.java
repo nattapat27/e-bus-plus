@@ -202,6 +202,24 @@ public class Connect {
     public static void Vote(){
         
     }
+    public static int[] countProblem(){
+        int result[] = new int[4];
+        try{
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
+            Statement st = connect.createStatement();
+            ResultSet rs = st.executeQuery("select problem.type_id from problem");
+            while(rs.next()){
+                result[rs.getInt("type_id")-1]++;
+            }
+            connect.close();
+        }catch(ClassNotFoundException e){
+            System.out.println(e);
+        }catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return result;
+    }    
     public static void main(String[] args) {
         //setProblem();
         if(ckUser("59130500027"))    
