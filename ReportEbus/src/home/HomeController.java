@@ -50,8 +50,9 @@ public class HomeController implements Initializable {
     private TableColumn<Problem, String> action;
      */
     @FXML
-    private Button adminButton;
+    private Button logoutButton;
 
+    @FXML
     public void handleHomeAction(ActionEvent event) throws IOException {
         System.out.println("Home");
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Home.fxml"));
@@ -64,6 +65,7 @@ public class HomeController implements Initializable {
         stage.show();
     }
 
+    @FXML
     public void handleReportAction(ActionEvent event) throws IOException {
         System.out.println(getClass().getResource("/addProblem/addProblemFXML.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("/addProblem/addProblemFXML.fxml"));
@@ -75,9 +77,10 @@ public class HomeController implements Initializable {
         stage.show();
     }
 
-    public void handleAdminAction(ActionEvent event) throws IOException {
-        System.out.println(getClass().getResource("/admin/Admin.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/admin/Admin.fxml"));
+    @FXML
+    private void handleLogoutAction(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/login/Login.fxml"));
+
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setResizable(false);
@@ -85,8 +88,10 @@ public class HomeController implements Initializable {
         stage.show();
     }
 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         Connect.setProblem();
         TableColumn problemNoCol = new TableColumn<>("No.");
         problemNoCol.setCellValueFactory(new PropertyValueFactory<>("problemNo"));
@@ -135,5 +140,4 @@ public class HomeController implements Initializable {
             }
         });
     }
-
 }
