@@ -38,9 +38,6 @@ public class LoginController implements Initializable {
     private Button registerButton;
     @FXML
     private Text alretText;
-    @FXML
-    private Button homeButton;
-
     
     
     @Override
@@ -87,14 +84,5 @@ public class LoginController implements Initializable {
         stage.show();
     }
 
-    @FXML
-    private void handleHomeAction(ActionEvent event) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/home/Home.fxml"));
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.setResizable(false);
-        ((Node)(event.getSource())).getScene().getWindow().hide();
-        stage.show();
-    }
     
 }

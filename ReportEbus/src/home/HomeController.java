@@ -50,8 +50,9 @@ public class HomeController implements Initializable {
     private TableColumn<Problem, String> action;
      */
     @FXML
-    private Button adminButton;
+    private Button logoutButton;
 
+    @FXML
     public void handleHomeAction(ActionEvent event) throws IOException {
         System.out.println("Home");
         FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("Home.fxml"));
@@ -64,6 +65,7 @@ public class HomeController implements Initializable {
         stage.show();
     }
 
+    @FXML
     public void handleReportAction(ActionEvent event) throws IOException {
         System.out.println(getClass().getResource("/addProblem/addProblemFXML.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("/addProblem/addProblemFXML.fxml"));
@@ -75,9 +77,10 @@ public class HomeController implements Initializable {
         stage.show();
     }
 
-    public void handleAdminAction(ActionEvent event) throws IOException {
-        System.out.println(getClass().getResource("/admin/Admin.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/admin/Admin.fxml"));
+    @FXML
+    private void handleLogoutAction(ActionEvent event) throws IOException{
+        Parent root = FXMLLoader.load(getClass().getResource("/login/Login.fxml"));
+
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setResizable(false);
@@ -85,17 +88,11 @@ public class HomeController implements Initializable {
         stage.show();
     }
 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        ObservableList<ProblemImage> itemList = FXCollections.observableArrayList();
-        ProblemImage item1 = new ProblemImage("1", "รอการรับเรื่อง", "รถน้ำมันหมด", "รถยนต์", new ImageView(new Image(getClass().getResourceAsStream("/images/IconLike.png"))));
-        ProblemImage item2 = new ProblemImage("2", "รอการรับเรื่อง", "รถน้ำมันหมด", "รถยนต์", new ImageView(new Image(getClass().getResourceAsStream("/images/IconDislike.png"))));
-        ProblemImage item3 = new ProblemImage("3", "รอการรับเรื่อง", "รถน้ำมันหมด", "รถยนต์", new ImageView(new Image(getClass().getResourceAsStream("/images/IconLike.png"))));
-        itemList.add(item1);
-        itemList.add(item2);
-        itemList.add(item3);
-
+        
+        Connect.setProblem();
         TableColumn problemNoCol = new TableColumn<>("No.");
         problemNoCol.setCellValueFactory(new PropertyValueFactory<>("problemNo"));
         problemNoCol.setPrefWidth(45.0);
@@ -117,16 +114,17 @@ public class HomeController implements Initializable {
         table.getColumns().add(problemTypeCol);
 
         TableColumn problemImageVoteCol = new TableColumn<>("Vote");
-        problemImageVoteCol.setCellValueFactory(new PropertyValueFactory<>("problemImageVote"));
+        problemImageVoteCol.setCellValueFactory(new PropertyValueFactory<>("problemButtonVote"));
         problemImageVoteCol.setPrefWidth(77.0);
         table.getColumns().add(problemImageVoteCol);
 
-        table.setItems(itemList);
+        table.setItems(Connect.getAllProblem());
 
         table.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
                 if (t.getClickCount() == 2) {
+                    
                     FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/PopupUser/PopupUser.fxml"));
                     Parent root;
                     try {
@@ -141,15 +139,5 @@ public class HomeController implements Initializable {
                 }
             }
         });
-        /* Connect.setProblem();
-        ObservableList<Problem> allProblem = Connect.getAllProblem();
-        problemId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        problemStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        problemName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        problemType.setCellValueFactory(new PropertyValueFactory<>("type"));
-        action.setCellValueFactory(new PropertyValueFactory<>("detail"));        
-        table.getItems().setAll(allProblem);*/
-
     }
-
 }

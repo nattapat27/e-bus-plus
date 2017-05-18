@@ -5,15 +5,15 @@
  */
 package graph;
 
+import ebus.model.Connect;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Group;
-import javafx.scene.Scene;
+import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
-import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -22,10 +22,25 @@ import javafx.stage.Stage;
  */
 public class GraphFXMLController implements Initializable {
 
+<<<<<<< HEAD
    
+=======
+    @FXML
+    private PieChart graphProblem;
+
+>>>>>>> dev
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        // TODO "ปัญหารถ", "ปัญหาคนขับ", "ปัญหาแอพ", "อื่นๆ"
+        int type[] = Connect.countProblem();
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+            new PieChart.Data("ปัญหารถ", type[0]),
+            new PieChart.Data("ปัญหาคนขับ", type[1]),
+            new PieChart.Data("ปัญหาแอพ", type[2]),
+            new PieChart.Data("อื่นๆ", type[3])
+        );
+        graphProblem.setData(pieChartData);
+        graphProblem.setLegendSide(Side.LEFT);
     }    
     
 }

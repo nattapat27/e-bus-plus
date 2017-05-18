@@ -7,10 +7,13 @@ package admin;
 
 import ebus.model.Problem;
 import ebus.model.Connect;
+import home.HomeController;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,8 +56,8 @@ public class adminController implements Initializable {
     @FXML
     private TableColumn<Problem, String> action;
 
+    @FXML
     public void handleLogoutAction(ActionEvent event) throws IOException {
-        System.out.println(getClass().getResource("/home/Home.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("/home/Home.fxml"));
 
         Stage stage = new Stage();
@@ -63,7 +66,21 @@ public class adminController implements Initializable {
         ((Node) (event.getSource())).getScene().getWindow().hide();
         stage.show();
     }
-
+    
+    @FXML
+    private void handleGraphAction(ActionEvent event) {
+        FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/Graph/Graph.fxml"));
+        Parent root;
+        try {
+            root = (Parent) fxmlloader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            stage.show();
+        } catch (IOException ex) {
+            Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * Initializes the controller class.
      */
