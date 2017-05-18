@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFD700;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFD700;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="register.RegisterController">
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="800.0" style="-fx-background-color: #FF8C00; -fx-border-color: #000000;">
          <children>
@@ -23,15 +23,16 @@
       </AnchorPane>
       <AnchorPane layoutX="59.0" layoutY="148.0" prefHeight="406.0" prefWidth="682.0" style="-fx-border-color: black; -fx-background-color: Moccasin;">
          <children>
-            <Button fx:id="Enter" layoutX="488.0" layoutY="314.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="147.0" text="Enter">
+            <Button fx:id="Enter" layoutX="488.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleEnterAction" prefHeight="42.0" prefWidth="147.0" text="Enter">
                <font>
                   <Font size="18.0" />
                </font>
             </Button>
-            <TextField fx:id="Name" layoutX="110.0" layoutY="63.0" />
-            <TextField fx:id="Surname" layoutX="448.0" layoutY="63.0" />
-            <TextField fx:id="Password" layoutX="110.0" layoutY="198.0" />
-            <TextField fx:id="Email" layoutX="110.0" layoutY="130.0" />
+            <TextField fx:id="Name" layoutX="110.0" layoutY="66.0" />
+            <TextField fx:id="Surname" layoutX="448.0" layoutY="66.0" />
+            <TextField fx:id="userId" layoutX="110.0" layoutY="137.0" />
+            <PasswordField fx:id="password" layoutX="448.0" layoutY="137.0" />
+            <TextField fx:id="email" layoutX="110.0" layoutY="205.0" />
             <Label layoutX="47.0" layoutY="65.0" text="Name :">
                <font>
                   <Font size="18.0" />
@@ -57,13 +58,22 @@
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="Password1" layoutX="448.0" layoutY="130.0" />
             <Label layoutX="362.0" layoutY="204.0" text="Phone :">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <TextField fx:id="Password11" layoutX="448.0" layoutY="198.0" />
+            <TextField fx:id="phone" layoutX="448.0" layoutY="205.0" />
+            <Text fx:id="alert" fill="RED" layoutX="208.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID มีการใช้งานแล้ว">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="alertdata" fill="RED" layoutX="195.0" layoutY="344.0" strokeType="OUTSIDE" strokeWidth="0.0" text="กรุณากรอกข้อมูลให้ครบถ้วน">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>
