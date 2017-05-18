@@ -58,7 +58,7 @@ public class adminController implements Initializable {
 
     @FXML
     public void handleLogoutAction(ActionEvent event) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/home/Home.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/login/Login.fxml"));
 
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
