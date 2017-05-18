@@ -7,8 +7,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 public class Connect {
-    protected static String user;
-    protected static ObservableList<ProblemImage> allProblem = FXCollections.observableArrayList();
+    private static String user;
+    private static ObservableList<ProblemImage> allProblem = FXCollections.observableArrayList();
 
     public static ObservableList<ProblemImage> getAllProblem() {
         return allProblem;
@@ -100,12 +100,14 @@ public class Connect {
             Class.forName("org.mariadb.jdbc.Driver");
             Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
             Statement st = connect.createStatement();
-            ResultSet rs = st.executeQuery("select user.password from user where user.user_id=\'"+user+"\'");
+            ResultSet rs = st.executeQuery("select user.* from user where user.user_id=\'"+user+"\'");
             //String newPassword = null;
             while(rs.next()){
                 System.out.println(">>");
                 if(rs.getString("user.password").equals(password)){
                     result = true;
+                    Connect.user = rs.getString("fname");
+                    
                     break;
                 }
             }
@@ -115,6 +117,7 @@ public class Connect {
         } catch (SQLException ex) {
             Logger.getLogger(Connect.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.out.println(Connect.user);
         return result;
     }
     public static boolean ckUser(String user){

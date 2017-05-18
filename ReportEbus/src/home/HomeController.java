@@ -88,14 +88,6 @@ public class HomeController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Connect.setProblem();
-        ObservableList<ProblemImage> itemList = FXCollections.observableArrayList();
-        ProblemImage item1 = new ProblemImage("1", "รอการรับเรื่อง", "รถน้ำมันหมด", "รถยนต์", new Button());
-        ProblemImage item2 = new ProblemImage("2", "รอการรับเรื่อง", "รถน้ำมันหมด", "รถยนต์", new Button());
-        ProblemImage item3 = new ProblemImage("3", "รอการรับเรื่อง", "รถน้ำมันหมด", "รถยนต์", new Button());
-        itemList.add(item1);
-        itemList.add(item2);
-        itemList.add(item3);
-
         TableColumn problemNoCol = new TableColumn<>("No.");
         problemNoCol.setCellValueFactory(new PropertyValueFactory<>("problemNo"));
         problemNoCol.setPrefWidth(45.0);
@@ -142,15 +134,6 @@ public class HomeController implements Initializable {
                 }
             }
         });
-        /* Connect.setProblem();
-        ObservableList<Problem> allProblem = Connect.getAllProblem();
-        problemId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        problemStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
-        problemName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        problemType.setCellValueFactory(new PropertyValueFactory<>("type"));
-        action.setCellValueFactory(new PropertyValueFactory<>("detail"));        
-        table.getItems().setAll(allProblem);*/
-
     }
 
 }
