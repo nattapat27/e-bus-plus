@@ -22,13 +22,8 @@ import javafx.scene.chart.PieChart;
  */
 public class GraphFXMLController implements Initializable {
 
-<<<<<<< HEAD
-   
-=======
     @FXML
     private PieChart graphProblem;
-
->>>>>>> dev
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO "ปัญหารถ", "ปัญหาคนขับ", "ปัญหาแอพ", "อื่นๆ"
