@@ -106,7 +106,7 @@ public class Connect {
                 System.out.println(">>");
                 if(rs.getString("user.password").equals(password)){
                     result = true;
-                    Connect.user = rs.getString("fname");
+                    Connect.user = rs.getString("user_id");
                     
                     break;
                 }
@@ -172,9 +172,8 @@ public class Connect {
             Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
             Statement st = connect.createStatement();
             ResultSet rs = st.executeQuery("select problem.problem_id from problem where problem.problem_name=\'"+problemName+"\'");
-            int point=0;
             while(rs.next()){
-                point = rs.getInt("problem_id");
+                result = rs.getInt("problem_id");
             }
             connect.close();
         }catch(ClassNotFoundException e){
@@ -223,9 +222,28 @@ public class Connect {
         }
         return result;
     }    
+    
+    public static String whoOwn(int problemId){
+        String result = null;
+        try{
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
+            Statement st = connect.createStatement();
+            ResultSet rs = st.executeQuery("select user_action_problem.user_id from user_action_problem where user_action_problem.problem_id="+problemId);
+            while(rs.next()){
+                if((result = rs.getString("user_action_problem.user_id"))!= null)
+                    break;
+            }
+            connect.close();
+        }catch(ClassNotFoundException e){
+            System.out.println(e);
+        }catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return result;
+    }
+    
     public static void main(String[] args) {
-        //setProblem();
-        if(ckUser("59130500027"))    
-            addUser("5913500027", "benzbenz", "nattapat27@gmail.com", "nattapat", "mapu", "0877333617");
+        System.out.println(positionProblem("แอพใช้เด้งหลุด"));
     }
 }

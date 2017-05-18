@@ -1,5 +1,6 @@
 package home;
 
+import PopupUser.PopupUserController;
 import ebus.model.Problem;
 import ebus.model.Connect;
 import javafx.event.ActionEvent;
@@ -23,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TableRow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -120,11 +122,19 @@ public class HomeController implements Initializable {
 
         table.setItems(Connect.getAllProblem());
 
-        table.setOnMouseClicked(new EventHandler<MouseEvent>() {
+        table.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
-                if (t.getClickCount() == 2) {
-                    
+                if (t.getClickCount() == 2 && t.isPrimaryButtonDown()) {
+                    Node node = ((Node) t.getTarget()).getParent();
+                    TableRow row;
+                    if (node instanceof TableRow) {
+                        row = (TableRow) node;
+                    } else {
+                        // clicking on text part
+                        row = (TableRow) node.getParent();
+                    }
+                    PopupUserController.setProblem((ProblemImage) row.getItem());
                     FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/PopupUser/PopupUser.fxml"));
                     Parent root;
                     try {
