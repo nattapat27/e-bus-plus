@@ -1,19 +1,23 @@
 package ebus.model;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
 public class Connect {
-    private static List<Problem> list = new ArrayList<Problem>();
-    protected static ObservableList<Problem> allProblem = FXCollections.observableArrayList(list);
+    protected static String user;
+    protected static ObservableList<ProblemImage> allProblem = FXCollections.observableArrayList();
 
-    public static ObservableList<Problem> getAllProblem() {
+    public static ObservableList<ProblemImage> getAllProblem() {
         return allProblem;
     }
+
+    public static String getUser() {
+        return user;
+    }
+
     
     public static void setProblem() {
         int l = allProblem.size();
@@ -24,25 +28,24 @@ public class Connect {
             Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
             Statement st = connect.createStatement();
             ResultSet rsProblem = st.executeQuery("select * from problem");
-            ResultSet rsStatus = st.executeQuery("select status.status_name from status inner join problem on problem.status_id=status.status_id");            
-            ResultSet rsType = st.executeQuery("select type.type_name from type inner join problem on problem.type_id=type.type_id");
+            ResultSet rsStatus = st.executeQuery("select status.status_name from problem inner join status on problem.status_id=status.status_id");            
+            ResultSet rsType = st.executeQuery("select type.type_name from problem inner join type on problem.type_id=type.type_id");
             int i=0;
             while(rsProblem.next()){
-                allProblem.add(new Problem());
-                allProblem.get(i).setName(rsProblem.getString("problem_name"));
-                allProblem.get(i).setDetail(rsProblem.getString("description"));
-                allProblem.get(i).setDate(rsProblem.getDate("problem_date"));
+                allProblem.add(new ProblemImage(""+(i+1), "", rsProblem.getString("problem_name"), "", new Button()));
+                allProblem.get(i).setProblemDetail(rsProblem.getString("description"));
+                allProblem.get(i).setProblemDate(rsProblem.getDate("problem_date"));
                 System.out.println(allProblem.get(i));
                 i++;
             }
             i=0;
             while(rsStatus.next()){    
-                allProblem.get(i).setStatus(rsStatus.getString("status_name"));
+                allProblem.get(i).setProblemStatus(rsStatus.getString("status_name"));
                 i++;
             }
             i=0;
             while(rsType.next()){
-                allProblem.get(i).setType(rsType.getString("type_name"));
+                allProblem.get(i).setProblemType(rsType.getString("type_name"));
                 i++;
             }
             connect.close();
@@ -159,7 +162,46 @@ public class Connect {
             System.out.println(ex);
         }
     }
-    
+    public static int positionProblem(String problemName){
+        int result = 0;
+        try{
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
+            Statement st = connect.createStatement();
+            ResultSet rs = st.executeQuery("select problem.problem_id from problem where problem.problem_name=\'"+problemName+"\'");
+            int point=0;
+            while(rs.next()){
+                point = rs.getInt("problem_id");
+            }
+            connect.close();
+        }catch(ClassNotFoundException e){
+        
+        }catch(SQLException e){
+            
+        }
+        return result;
+    }
+    public static boolean ckVote(int problemId, String user){
+        boolean result = true;
+        try{
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
+            Statement st = connect.createStatement();
+            ResultSet rsCk = st.executeQuery("select * from user_action_problem where user_action_problem.problem_id="+problemId+" and user_action_problem.user_id=\'"+user+"\'");
+            while(rsCk.next()){
+                result = false;
+            }
+            connect.close();
+        }catch(ClassNotFoundException e){
+            System.out.println(e);
+        }catch (SQLException ex) {
+            System.out.println(ex);
+        }
+        return result;
+    }
+    public static void Vote(){
+        
+    }
     public static void main(String[] args) {
         //setProblem();
         if(ckUser("59130500027"))    

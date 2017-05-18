@@ -87,11 +87,11 @@ public class HomeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        Connect.setProblem();
         ObservableList<ProblemImage> itemList = FXCollections.observableArrayList();
-        ProblemImage item1 = new ProblemImage("1", "รอการรับเรื่อง", "รถน้ำมันหมด", "รถยนต์", new ImageView(new Image(getClass().getResourceAsStream("/images/IconLike.png"))));
-        ProblemImage item2 = new ProblemImage("2", "รอการรับเรื่อง", "รถน้ำมันหมด", "รถยนต์", new ImageView(new Image(getClass().getResourceAsStream("/images/IconDislike.png"))));
-        ProblemImage item3 = new ProblemImage("3", "รอการรับเรื่อง", "รถน้ำมันหมด", "รถยนต์", new ImageView(new Image(getClass().getResourceAsStream("/images/IconLike.png"))));
+        ProblemImage item1 = new ProblemImage("1", "รอการรับเรื่อง", "รถน้ำมันหมด", "รถยนต์", new Button());
+        ProblemImage item2 = new ProblemImage("2", "รอการรับเรื่อง", "รถน้ำมันหมด", "รถยนต์", new Button());
+        ProblemImage item3 = new ProblemImage("3", "รอการรับเรื่อง", "รถน้ำมันหมด", "รถยนต์", new Button());
         itemList.add(item1);
         itemList.add(item2);
         itemList.add(item3);
@@ -117,16 +117,17 @@ public class HomeController implements Initializable {
         table.getColumns().add(problemTypeCol);
 
         TableColumn problemImageVoteCol = new TableColumn<>("Vote");
-        problemImageVoteCol.setCellValueFactory(new PropertyValueFactory<>("problemImageVote"));
+        problemImageVoteCol.setCellValueFactory(new PropertyValueFactory<>("problemButtonVote"));
         problemImageVoteCol.setPrefWidth(77.0);
         table.getColumns().add(problemImageVoteCol);
 
-        table.setItems(itemList);
+        table.setItems(Connect.getAllProblem());
 
         table.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent t) {
                 if (t.getClickCount() == 2) {
+                    
                     FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/PopupUser/PopupUser.fxml"));
                     Parent root;
                     try {

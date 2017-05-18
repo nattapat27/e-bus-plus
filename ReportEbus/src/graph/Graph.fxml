@@ -8,17 +8,17 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFD700;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graph.GraphFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="300.0" prefWidth="400.0" style="-fx-background-color: #FFD700;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="graph.GraphFXMLController">
    <children>
-      <AnchorPane prefHeight="100.0" prefWidth="812.0" style="-fx-background-color: #FF8C00; -fx-border-color: #000;">
+      <PieChart fx:id="graphProblem" layoutX="100.0" layoutY="111.0" prefHeight="139.0" prefWidth="174.0" />
+      <AnchorPane prefHeight="85.0" prefWidth="400.0" style="-fx-background-color: #FF8C00; -fx-border-color: #000;">
          <children>
-            <Label layoutX="324.0" layoutY="15.0" text="Graph">
+            <Label layoutX="135.0" layoutY="8.0" text="Graph">
                <font>
                   <Font size="48.0" />
                </font>
             </Label>
          </children>
       </AnchorPane>
-      <PieChart fx:id="graphProblem" layoutX="150.0" layoutY="147.0" />
    </children>
 </AnchorPane>
