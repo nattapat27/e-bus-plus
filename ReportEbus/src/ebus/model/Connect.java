@@ -67,16 +67,29 @@ public class Connect {
             ps.execute();
                
             connect.close();
-            setProblem();
+            //setProblem();
         }catch(ClassNotFoundException e){
             System.out.println(e);
         }catch (SQLException ex) {
             System.out.println(ex);
         }
     }
-    public static void addAction(int problemId,String email){
-        
-        
+    public static void addAction(int problemId,String user){
+        try{
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
+            PreparedStatement ps = connect.prepareStatement("insert into user_action_problem(problem_id,user_id) value(?,?)");
+            ps.setInt(1, problemId);
+            ps.setString(2, user);
+            ps.execute();
+               
+            connect.close();
+            //setProblem();
+        }catch(ClassNotFoundException e){
+            System.out.println(e);
+        }catch (SQLException ex) {
+            System.out.println(ex);
+        }
     }
     public static boolean ckLogin(String user ,String password){
         boolean result = false;
@@ -128,8 +141,6 @@ public class Connect {
         try{
             Class.forName("org.mariadb.jdbc.Driver");
             Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
-//            Statement st = connect.createStatement();
-//            st.executeUpdate("insert into problem value("+"'"+name+"',"+"'"+date+"',"+"'"+detail+"',"+statu+","+type+")");
             PreparedStatement ps = connect.prepareStatement("insert into user(user_id,email,fname,lname,tel,password,user_role_id) value(?,?,?,?,?,?,?)");
             ps.setString(1, user_id);
             ps.setString(2, email);
@@ -141,13 +152,14 @@ public class Connect {
             ps.execute();
                
             connect.close();
-            setProblem();
+            //setProblem();
         }catch(ClassNotFoundException e){
             System.out.println(e);
         }catch (SQLException ex) {
             System.out.println(ex);
         }
     }
+    
     public static void main(String[] args) {
         //setProblem();
         if(ckUser("59130500027"))    
