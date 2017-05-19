@@ -133,7 +133,9 @@ public class adminController implements Initializable {
                         row = (TableRow) node.getParent();
                     }
                     ProblemAdmin pa = (ProblemAdmin) row.getItem();
-                    //PopupUserController.setProblem();
+                    PopupUserController.setProblem(new ProblemImage(""+pa.getId(), "", pa.getTopic(), pa.getType(), null));
+                    PopupUserController.getProblem().setProblemDate(pa.getDate());
+                    PopupUserController.getProblem().setProblemDetail(pa.getDetail());
                     FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/PopupUser/PopupUser.fxml"));
                     Parent root;
                     try {
@@ -148,7 +150,6 @@ public class adminController implements Initializable {
                 }
             }
         });
-        
         /*Connect.setProblem();
         ObservableList<ProblemImage> allProblem = FXCollections.observableArrayList(Connect.getAllProblem());
 

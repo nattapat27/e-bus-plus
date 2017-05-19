@@ -22,6 +22,21 @@ public class Connect {
         return user;
     }
 
+    public static void changeStatus(int index, int problemId){
+        try{
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
+            PreparedStatement st = connect.prepareStatement("UPDATE problem SET status_id=? WHERE problem_id=?");
+            st.setInt(1, index);
+            st.setInt(2, problemId);
+            st.execute();
+            connect.close();
+        }catch(ClassNotFoundException e){
+            System.out.println(e);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
     
     public static void setProblemAdmin() {
         int l = allProblemAdmin.size();

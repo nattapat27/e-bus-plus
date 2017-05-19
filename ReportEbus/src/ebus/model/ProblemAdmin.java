@@ -15,7 +15,6 @@ public class ProblemAdmin {
     private String detail;
     private String type;
     private Date date;
-
     public ProblemAdmin(String topic, int status, int id, String detail, String type, Date date) {
         this.topic = topic;
         ObservableList<String> options = FXCollections.observableArrayList( 

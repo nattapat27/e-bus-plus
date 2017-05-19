@@ -13,7 +13,7 @@ public class RunHome extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Home.fxml"));
         
         Scene scene = new Scene(root,800,600);
-        
+        stage.setTitle("Home");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();

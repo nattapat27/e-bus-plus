@@ -21,16 +21,18 @@ public class ProblemImage {
         this.problemStatus = problemStatus;
         this.problemTopic = problemTopic;
         this.problemType = problemType;
-        this.problemButtonVote = problemButtonVote;
-        this.problemButtonVote.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/IconLike.png"))));
-        this.problemButtonVote.setOnAction(new EventHandler<ActionEvent>() {
-            @Override public void handle(ActionEvent e) {
-                int problemIdAction = Connect.positionProblem(getProblemTopic());
-                if(Connect.ckVote(problemIdAction, Connect.getUser())){
-                    //Connect.Vote();
+        if(problemButtonVote!=null){
+            this.problemButtonVote = problemButtonVote;
+            this.problemButtonVote.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/IconLike.png"))));
+            this.problemButtonVote.setOnAction(new EventHandler<ActionEvent>() {
+                @Override public void handle(ActionEvent e) {
+                    int problemIdAction = Connect.positionProblem(getProblemTopic());
+                    if(Connect.ckVote(problemIdAction, Connect.getUser())){
+                        //Connect.Vote();
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     public String getProblemNo() {
