@@ -91,7 +91,9 @@ public class adminController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Connect.setProblemAdmin();
-        ObservableList<ProblemAdmin> allProblemAdmin = Connect.getAllProblemAdmin();
+        for(int i=0;i<Connect.getAllProblemAdmin().size();i++){
+            Connect.getAllProblemAdmin().get(i).setNumOfVote(Connect.countProblem(Connect.positionProblem(Connect.getAllProblemAdmin().get(i).getTopic())));
+        }
         
         TableColumn problemNoCol = new TableColumn<>("No.");
         problemNoCol.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -105,7 +107,7 @@ public class adminController implements Initializable {
 
         TableColumn problemTopicCol = new TableColumn<>("Topic");
         problemTopicCol.setCellValueFactory(new PropertyValueFactory<>("topic"));
-        problemTopicCol.setPrefWidth(349.0);
+        problemTopicCol.setPrefWidth(280.0);
         table.getColumns().add(problemTopicCol);
 
         TableColumn problemTypeCol = new TableColumn<>("Type");
@@ -113,10 +115,15 @@ public class adminController implements Initializable {
         problemTypeCol.setPrefWidth(100.0);
         table.getColumns().add(problemTypeCol);
 
-        TableColumn problemImageVoteCol = new TableColumn<>("Date");
-        problemImageVoteCol.setCellValueFactory(new PropertyValueFactory<>("date"));
-        problemImageVoteCol.setPrefWidth(77.0);
-        table.getColumns().add(problemImageVoteCol);
+        TableColumn problemDateCol = new TableColumn<>("Date");
+        problemDateCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        problemDateCol.setPrefWidth(77.0);
+        table.getColumns().add(problemDateCol);
+        
+        TableColumn problemCountCol = new TableColumn<>("numOfVote");
+        problemCountCol.setCellValueFactory(new PropertyValueFactory<>("numOfVote"));
+        problemCountCol.setPrefWidth(77.0);
+        table.getColumns().add(problemCountCol);
 
         table.setItems(Connect.getAllProblemAdmin());
         

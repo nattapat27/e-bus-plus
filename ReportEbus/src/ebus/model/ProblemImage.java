@@ -16,6 +16,16 @@ public class ProblemImage {
     private Button problemButtonVote;
     private Date problemDate;
     private String own;
+    private int numOfVote;
+
+    public int getNumOfVote() {
+        return numOfVote;
+    }
+
+    public void setNumOfVote(int numOfVote) {
+        this.numOfVote = numOfVote;
+    }
+    
 
     public ProblemImage(String problemNo, String problemStatus, String problemTopic, String problemType, Button problemButtonVote,String own) {
         this.problemNo = problemNo;

@@ -15,6 +15,16 @@ public class ProblemAdmin {
     private Date date;
     private String word;
     private String own;
+    private int numOfVote;
+
+    public int getNumOfVote() {
+        return numOfVote;
+    }
+
+    public void setNumOfVote(int numOfVote) {
+        this.numOfVote = numOfVote;
+    }
+    
 
     public void setOwn(String own) {
         this.own = own;

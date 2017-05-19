@@ -23,6 +23,25 @@ public class Connect {
         return user;
     }
     
+    public static int countProblem(int problemId){
+        int result=0;
+        try{
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
+            Statement st = connect.createStatement();
+            ResultSet rs = st.executeQuery("select * from user_action_problem where problem_id="+problemId);
+            while(rs.next()){
+                result++;
+            }
+            connect.close();
+        }catch(ClassNotFoundException e){
+            System.out.println(e);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        return result;
+    }
+    
     public static void deleteProblem(int problemId){
         try{
             Class.forName("org.mariadb.jdbc.Driver");

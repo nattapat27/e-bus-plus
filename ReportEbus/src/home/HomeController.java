@@ -94,6 +94,9 @@ public class HomeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         Connect.setProblem();
+        for(int i=0;i<Connect.getAllProblem().size();i++){
+            Connect.getAllProblem().get(i).setNumOfVote(Connect.countProblem(Connect.positionProblem(Connect.getAllProblem().get(i).getProblemTopic())));
+        }
         TableColumn problemNoCol = new TableColumn<>("No.");
         problemNoCol.setCellValueFactory(new PropertyValueFactory<>("problemNo"));
         problemNoCol.setPrefWidth(45.0);
@@ -106,7 +109,7 @@ public class HomeController implements Initializable {
 
         TableColumn problemTopicCol = new TableColumn<>("Topic");
         problemTopicCol.setCellValueFactory(new PropertyValueFactory<>("problemTopic"));
-        problemTopicCol.setPrefWidth(349.0);
+        problemTopicCol.setPrefWidth(300.0);
         table.getColumns().add(problemTopicCol);
 
         TableColumn problemTypeCol = new TableColumn<>("Type");
@@ -118,6 +121,11 @@ public class HomeController implements Initializable {
         problemImageVoteCol.setCellValueFactory(new PropertyValueFactory<>("problemButtonVote"));
         problemImageVoteCol.setPrefWidth(77.0);
         table.getColumns().add(problemImageVoteCol);
+        
+        TableColumn problemCountCol = new TableColumn<>("numOfVote");
+        problemCountCol.setCellValueFactory(new PropertyValueFactory<>("numOfVote"));
+        problemCountCol.setPrefWidth(77.0);
+        table.getColumns().add(problemCountCol);
 
         table.setItems(Connect.getAllProblem());
 
