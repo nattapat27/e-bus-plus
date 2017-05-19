@@ -5,8 +5,8 @@
  */
 package admin;
 
-import ebus.model.Problem;
 import ebus.model.Connect;
+import ebus.model.ProblemImage;
 import home.HomeController;
 import java.io.IOException;
 import java.net.URL;
@@ -44,17 +44,17 @@ public class adminController implements Initializable {
     @FXML
     private Button logoutButton;
     @FXML
-    private TableView<Problem> table;
+    private TableView<ProblemImage> table;
     @FXML
-    private TableColumn<Problem, String> problemId;
+    private TableColumn<ProblemImage, String> problemId;
     @FXML
-    private TableColumn<Problem, String> problemStatus;
+    private TableColumn<ProblemImage, String> problemStatus;
     @FXML
-    private TableColumn<Problem, String> problemName;
+    private TableColumn<ProblemImage, String> problemName;
     @FXML
-    private TableColumn<Problem, String> problemType;
+    private TableColumn<ProblemImage, String> problemType;
     @FXML
-    private TableColumn<Problem, String> action;
+    private TableColumn<ProblemImage, String> action;
 
     @FXML
     public void handleLogoutAction(ActionEvent event) throws IOException {
@@ -86,28 +86,15 @@ public class adminController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<String> statuschoice = FXCollections.observableArrayList(
-                new String("รอดำเนินการ"),
-                new String("ได้รับเรื่องแล้ว"),
-                new String("กำลังดำเนินการ"),
-                new String("เสร็จสิ้น")      
-        );
         
-        Connect.setProblem();
-        System.out.println(">>>" + new PropertyValueFactory("status"));
-        //ObservableList<Problem> allProblem = Connect.getAllProblem();
-        ObservableList<Problem> allProblem = FXCollections.observableArrayList(
-                new Problem("ปัญหา1", "", "รอดำเนินการ", "ปัญหารถ", new Date()),
-                new Problem("ปัญหา2", "", "กำลังดำเนินการ", "ปัญหาคนขับ", new Date()),
-                new Problem("ปัญหา3", "", "ดำเนินการแล้ว", "ปัญหาแอพ", new Date()),
-                new Problem("ปัญหา4", "", "รอดำเนินการ", "อื่น ๆ", new Date()),
-                new Problem("ปัญหา5", "", "ดำเนินการแล้ว", "ปัญหาคนขับ", new Date())
-        );
+        
+        /*Connect.setProblem();
+        ObservableList<ProblemImage> allProblem = FXCollections.observableArrayList(Connect.getAllProblem());
 
         problemId.setCellValueFactory(new PropertyValueFactory<>("id"));
         problemStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         problemStatus.setCellFactory(ComboBoxTableCell.forTableColumn(statuschoice));
-        problemStatus.setOnEditCommit(new EventHandler<CellEditEvent<Problem, String>>(){
+        problemStatus.setOnEditCommit(new EventHandler<CellEditEvent<ProblemImage, String>>(){
             @Override
             public void handle(CellEditEvent<Problem, String> t){
                ((Problem) t.getTableView().getItems().get(t.getTablePosition().getRow())).setStatus(t.getNewValue());
@@ -116,7 +103,7 @@ public class adminController implements Initializable {
         problemName.setCellValueFactory(new PropertyValueFactory<>("name"));
         problemType.setCellValueFactory(new PropertyValueFactory<>("type"));
         action.setCellValueFactory(new PropertyValueFactory<>("detail"));
-        table.getItems().setAll(allProblem);
+        table.getItems().setAll(allProblem);*/
     }
 
 }
