@@ -29,6 +29,9 @@ public class ProblemAdmin {
         }
 //        this.status.setItems(options);
         this.status.setValue(options.get(status));
+        this.status.setOnAction((event) -> {
+            System.out.println("CheckBox Action"+this.status.getValue());
+        });
         this.id = id;
         this.detail = detail;
         this.type = type;
