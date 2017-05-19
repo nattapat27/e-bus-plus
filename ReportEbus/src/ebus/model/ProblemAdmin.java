@@ -1,12 +1,10 @@
 package ebus.model;
 
+import java.io.IOException;
 import java.sql.Date;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.util.Callback;
 
 public class ProblemAdmin {
     private String topic;
@@ -15,8 +13,10 @@ public class ProblemAdmin {
     private String detail;
     private String type;
     private Date date;
+    private String word;
     public ProblemAdmin(String topic, int status, int id, String detail, String type, Date date) {
         this.topic = topic;
+        word = "ปัญหา "+topic+"\nได้ ";
         ObservableList<String> options = FXCollections.observableArrayList( 
                 "ได้รับเรื่องแล้ว", 
                 "รอดำเนินการ",
@@ -30,6 +30,19 @@ public class ProblemAdmin {
         this.status.setValue(options.get(status));
         this.status.setOnAction((event) -> {
             System.out.println("CheckBox Action"+this.status.getValue());
+            word+=this.status.getValue();
+            String userVote[] = Connect.getUserVoteProblem(Connect.positionProblem(this.topic));
+            try{
+                SendFileEmail.send(userVote, "ผลการติดตามปัญหา", word);
+            }catch(IOException e){
+                e.printStackTrace();
+            }
+            /*
+            sent email
+            change db
+            if(ok)
+            delete db
+            */
         });
         this.id = id;
         this.detail = detail;

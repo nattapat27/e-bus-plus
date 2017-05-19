@@ -1,5 +1,6 @@
 package ebus.model;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +22,27 @@ public class Connect {
     public static String getUser() {
         return user;
     }
-
+    public static String[] getUserVoteProblem(int problemId){
+        String[] result = null;
+        ArrayList<String> tem = new ArrayList();
+        try{
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
+            Statement st = connect.createStatement();
+            ResultSet rs = st.executeQuery("select user.email from user_action_problem inner join user on user_action_problem.user_id=user.user_id where user_action_problem.problem_id="+problemId);
+            while(rs.next()){
+                tem.add(rs.getString("user.email"));
+            }
+            connect.close();
+        }catch(ClassNotFoundException e){
+            System.out.println(e);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        result = new String[tem.size()];
+        result = tem.toArray(result);
+        return result;
+    }
     public static void changeStatus(int index, int problemId){
         try{
             Class.forName("org.mariadb.jdbc.Driver");
@@ -299,6 +320,8 @@ public class Connect {
     }
     
     public static void main(String[] args) {
-        System.out.println(positionProblem("แอพใช้เด้งหลุด"));
+        String[] tem = getUserVoteProblem(1);
+        for(int i=0;i<tem.length;i++)
+            System.out.println(tem[i]);
     }
 }
