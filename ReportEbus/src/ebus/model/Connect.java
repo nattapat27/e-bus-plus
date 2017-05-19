@@ -9,9 +9,13 @@ import javafx.scene.control.Button;
 public class Connect {
     private static String user;
     private static ObservableList<ProblemImage> allProblem = FXCollections.observableArrayList();
+    private static ObservableList<ProblemAdmin> allProblemAdmin = FXCollections.observableArrayList();
 
     public static ObservableList<ProblemImage> getAllProblem() {
         return allProblem;
+    }
+    public static ObservableList<ProblemAdmin> getAllProblemAdmin() {
+        return allProblemAdmin;
     }
 
     public static String getUser() {
@@ -19,6 +23,41 @@ public class Connect {
     }
 
     
+    public static void setProblemAdmin() {
+        int l = allProblemAdmin.size();
+        for(int i=0;i<l;i++)
+            allProblemAdmin.remove(0);
+        try{
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
+            Statement st = connect.createStatement();
+            ResultSet rsProblem = st.executeQuery("select * from problem");
+            ResultSet rsType = st.executeQuery("select type.type_name from problem inner join type on problem.type_id=type.type_id");
+            int i=0;
+            while(rsProblem.next()){
+                allProblemAdmin.add(new ProblemAdmin(
+                        rsProblem.getString("problem_name"), 
+                        rsProblem.getInt("status_id")-1, 
+                        (i+1), 
+                        rsProblem.getString("description"), 
+                        "", 
+                        rsProblem.getDate("problem_date")
+                ));
+                i++;
+            }
+            i=0;
+            while(rsType.next()){
+                allProblemAdmin.get(i).setType(rsType.getString("type.type_name"));
+                i++;
+            }
+            
+            connect.close();
+        }catch(ClassNotFoundException e){
+            System.out.println(e);
+        }catch (SQLException ex) {
+            System.out.println(ex);
+        }
+    }
     public static void setProblem() {
         int l = allProblem.size();
         for(int i=0;i<l;i++)

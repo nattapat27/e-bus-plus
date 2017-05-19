@@ -5,8 +5,9 @@
  */
 package admin;
 
-import ebus.model.Problem;
 import ebus.model.Connect;
+import ebus.model.ProblemAdmin;
+import ebus.model.ProblemImage;
 import home.HomeController;
 import java.io.IOException;
 import java.net.URL;
@@ -44,18 +45,18 @@ public class adminController implements Initializable {
     @FXML
     private Button logoutButton;
     @FXML
-    private TableView<Problem> table;
+    private TableView<ProblemAdmin> table;
+    /*@FXML
+    private TableColumn<ProblemAdmin, String> problemId;
     @FXML
-    private TableColumn<Problem, String> problemId;
+    private TableColumn<ProblemAdmin, String> problemStatus;
     @FXML
-    private TableColumn<Problem, String> problemStatus;
+    private TableColumn<ProblemAdmin, String> problemName;
     @FXML
-    private TableColumn<Problem, String> problemName;
+    private TableColumn<ProblemAdmin, String> problemType;
     @FXML
-    private TableColumn<Problem, String> problemType;
-    @FXML
-    private TableColumn<Problem, String> action;
-
+    private TableColumn<ProblemAdmin, String> action;
+    */
     @FXML
     public void handleLogoutAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/login/Login.fxml"));
@@ -86,37 +87,52 @@ public class adminController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<String> statuschoice = FXCollections.observableArrayList(
-                new String("รอดำเนินการ"),
-                new String("ได้รับเรื่องแล้ว"),
-                new String("กำลังดำเนินการ"),
-                new String("เสร็จสิ้น")      
-        );
+        Connect.setProblemAdmin();
+        ObservableList<ProblemAdmin> allProblemAdmin = Connect.getAllProblemAdmin();
         
-        Connect.setProblem();
-        System.out.println(">>>" + new PropertyValueFactory("status"));
-        //ObservableList<Problem> allProblem = Connect.getAllProblem();
-        ObservableList<Problem> allProblem = FXCollections.observableArrayList(
-                new Problem("ปัญหา1", "", "รอดำเนินการ", "ปัญหารถ", new Date()),
-                new Problem("ปัญหา2", "", "กำลังดำเนินการ", "ปัญหาคนขับ", new Date()),
-                new Problem("ปัญหา3", "", "ดำเนินการแล้ว", "ปัญหาแอพ", new Date()),
-                new Problem("ปัญหา4", "", "รอดำเนินการ", "อื่น ๆ", new Date()),
-                new Problem("ปัญหา5", "", "ดำเนินการแล้ว", "ปัญหาคนขับ", new Date())
-        );
+        TableColumn problemNoCol = new TableColumn<>("No.");
+        problemNoCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        problemNoCol.setPrefWidth(45.0);
+        table.getColumns().add(problemNoCol);
+
+        TableColumn problemStatusCol = new TableColumn<>("Status");
+        problemStatusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+        problemStatusCol.setPrefWidth(125.0);
+        table.getColumns().add(problemStatusCol);
+
+        TableColumn problemTopicCol = new TableColumn<>("Topic");
+        problemTopicCol.setCellValueFactory(new PropertyValueFactory<>("topic"));
+        problemTopicCol.setPrefWidth(349.0);
+        table.getColumns().add(problemTopicCol);
+
+        TableColumn problemTypeCol = new TableColumn<>("Type");
+        problemTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        problemTypeCol.setPrefWidth(100.0);
+        table.getColumns().add(problemTypeCol);
+
+        TableColumn problemImageVoteCol = new TableColumn<>("Date");
+        problemImageVoteCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        problemImageVoteCol.setPrefWidth(77.0);
+        table.getColumns().add(problemImageVoteCol);
+
+        table.setItems(Connect.getAllProblemAdmin());
+        
+        /*Connect.setProblem();
+        ObservableList<ProblemImage> allProblem = FXCollections.observableArrayList(Connect.getAllProblem());
 
         problemId.setCellValueFactory(new PropertyValueFactory<>("id"));
         problemStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         problemStatus.setCellFactory(ComboBoxTableCell.forTableColumn(statuschoice));
-        problemStatus.setOnEditCommit(new EventHandler<CellEditEvent<Problem, String>>(){
-            @Override
-            public void handle(CellEditEvent<Problem, String> t){
-               ((Problem) t.getTableView().getItems().get(t.getTablePosition().getRow())).setStatus(t.getNewValue());
-            }
+        problemStatus.setOnEditCommit(new EventHandler<CellEditEvent<ProblemImage, String>>(){
+        @Override
+        public void handle(CellEditEvent<Problem, String> t){
+        ((Problem) t.getTableView().getItems().get(t.getTablePosition().getRow())).setStatus(t.getNewValue());
+        }
         });
         problemName.setCellValueFactory(new PropertyValueFactory<>("name"));
         problemType.setCellValueFactory(new PropertyValueFactory<>("type"));
         action.setCellValueFactory(new PropertyValueFactory<>("detail"));
-        table.getItems().setAll(allProblem);
+        table.getItems().setAll(allProblem);*/
     }
 
 }
