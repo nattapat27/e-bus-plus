@@ -39,7 +39,7 @@ public class PopupUserController implements Initializable {
         topic.setDisable(true);
         date.setText(problem.getProblemDate().toString());
         date.setDisable(true);
-        user.setText(Connect.whoOwn(Connect.positionProblem(problem.getProblemTopic())));
+        user.setText(problem.getOwn());
         user.setDisable(true);
     }    
     

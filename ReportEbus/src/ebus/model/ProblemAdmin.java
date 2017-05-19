@@ -14,7 +14,16 @@ public class ProblemAdmin {
     private String type;
     private Date date;
     private String word;
-    public ProblemAdmin(String topic, int status, int id, String detail, String type, Date date) {
+    private String own;
+
+    public void setOwn(String own) {
+        this.own = own;
+    }
+
+    public String getOwn() {
+        return own;
+    }
+    public ProblemAdmin(String topic, int status, int id, String detail, String type, Date date,String own) {
         this.topic = topic;
         word = "ปัญหา "+topic+"\nได้ ";
         ObservableList<String> options = FXCollections.observableArrayList( 
@@ -52,6 +61,7 @@ public class ProblemAdmin {
         this.detail = detail;
         this.type = type;
         this.date = date;
+        this.own = own;
     }
 
     

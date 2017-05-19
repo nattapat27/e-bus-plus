@@ -96,7 +96,8 @@ public class Connect {
                         (i+1), 
                         rsProblem.getString("description"), 
                         "", 
-                        rsProblem.getDate("problem_date")
+                        rsProblem.getDate("problem_date"),
+                        rsProblem.getString("user_id")
                 ));
                 i++;
             }
@@ -126,7 +127,7 @@ public class Connect {
             ResultSet rsType = st.executeQuery("select type.type_name from problem inner join type on problem.type_id=type.type_id");
             int i=0;
             while(rsProblem.next()){
-                allProblem.add(new ProblemImage(""+(i+1), "", rsProblem.getString("problem_name"), "", new Button()));
+                allProblem.add(new ProblemImage(""+(i+1), "", rsProblem.getString("problem_name"), "", new Button(), rsProblem.getString("user_id")));
                 allProblem.get(i).setProblemDetail(rsProblem.getString("description"));
                 allProblem.get(i).setProblemDate(rsProblem.getDate("problem_date"));
                 System.out.println(allProblem.get(i));
@@ -155,12 +156,13 @@ public class Connect {
             Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
 //            Statement st = connect.createStatement();
 //            st.executeUpdate("insert into problem value("+"'"+name+"',"+"'"+date+"',"+"'"+detail+"',"+statu+","+type+")");
-            PreparedStatement ps = connect.prepareStatement("insert into problem(problem_name,description,status_id,type_id,problem_date) value(?,?,?,?,?)");
+            PreparedStatement ps = connect.prepareStatement("insert into problem(problem_name,description,status_id,type_id,problem_date,user_id) value(?,?,?,?,?,?)");
             ps.setString(1, name);
             ps.setString(2, detail);
             ps.setInt(3, statu);
             ps.setInt(4, type);
             ps.setDate(5, new java.sql.Date(date.getTime()));
+            ps.setString(6, Connect.getUser());
             ps.execute();
                
             connect.close();
@@ -351,6 +353,6 @@ public class Connect {
     }
     
     public static void main(String[] args) {
-        System.out.println(ckVote(9, "59130500027"));
+        removeAction(9, "59130500028");
     }
 }

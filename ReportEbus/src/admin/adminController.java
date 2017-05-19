@@ -133,7 +133,7 @@ public class adminController implements Initializable {
                         row = (TableRow) node.getParent();
                     }
                     ProblemAdmin pa = (ProblemAdmin) row.getItem();
-                    PopupUserController.setProblem(new ProblemImage(""+pa.getId(), "", pa.getTopic(), pa.getType(), null));
+                    PopupUserController.setProblem(new ProblemImage(""+pa.getId(), "", pa.getTopic(), pa.getType(), null,pa.getOwn()));
                     PopupUserController.getProblem().setProblemDate(pa.getDate());
                     PopupUserController.getProblem().setProblemDetail(pa.getDetail());
                     FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/PopupUser/PopupUser.fxml"));

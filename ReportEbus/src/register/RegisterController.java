@@ -11,11 +11,16 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -56,6 +61,13 @@ public class RegisterController implements Initializable {
         if((!userId.equals(""))&&(!password.equals(""))&&(!email.equals(""))&&(!name.equals(""))&&(!surname.equals(""))&&(!phone.equals(""))){
             if(Connect.ckUser(userId)){
                 Connect.addUser(userId, password, email, name, surname, phone);
+                Parent root = FXMLLoader.load(getClass().getResource("/login/Login.fxml"));
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.setResizable(false);
+                ((Node) (event.getSource())).getScene().getWindow().hide();
+                stage.show();
             }
             else{
                 alert.setVisible(true);

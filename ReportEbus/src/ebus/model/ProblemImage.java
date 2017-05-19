@@ -15,8 +15,9 @@ public class ProblemImage {
     private String problemDetail;
     private Button problemButtonVote;
     private Date problemDate;
+    private String own;
 
-    public ProblemImage(String problemNo, String problemStatus, String problemTopic, String problemType, Button problemButtonVote) {
+    public ProblemImage(String problemNo, String problemStatus, String problemTopic, String problemType, Button problemButtonVote,String own) {
         this.problemNo = problemNo;
         this.problemStatus = problemStatus;
         this.problemTopic = problemTopic;
@@ -31,6 +32,7 @@ public class ProblemImage {
                 unlike(problemIdAction, this.problemButtonVote);
             }
         }
+        this.own = own;
     }
     
     private void like(int id,Button button){
@@ -41,6 +43,14 @@ public class ProblemImage {
                 unlike(id, button);
             }
         });
+    }
+
+    public void setOwn(String own) {
+        this.own = own;
+    }
+
+    public String getOwn() {
+        return own;
     }
     private void unlike(int id,Button button){
         button.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/IconDisLike.png"))));
