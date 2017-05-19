@@ -36,15 +36,7 @@
                </graphic></Button>
          </children>
       </AnchorPane>
-      <TableView fx:id="table" editable="true" layoutX="50.0" layoutY="154.0" prefHeight="421.0" prefWidth="735.0" style="-fx-background-color: #ffe4b5;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0">
-        <columns>
-          <TableColumn fx:id="problemId" prefWidth="75.0" text="No." />
-          <TableColumn fx:id="problemStatus" prefWidth="75.0" text="สถานะ" />
-            <TableColumn fx:id="problemName" prefWidth="349.0" text="หัวข้อปัญหา" />
-            <TableColumn fx:id="problemType" prefWidth="123.0" text="ประเภท" />
-            <TableColumn fx:id="action" prefWidth="77.0" text="โหวต" />
-        </columns>
-      </TableView>
+      <TableView fx:id="table" editable="true" layoutX="50.0" layoutY="154.0" prefHeight="421.0" prefWidth="735.0" style="-fx-background-color: #ffe4b5;" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" />
       <Label layoutX="50.0" layoutY="112.0" text="Problem">
          <font>
             <Font name="System Bold" size="24.0" />
