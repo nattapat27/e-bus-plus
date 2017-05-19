@@ -31,12 +31,16 @@ public class ProblemAdmin {
         this.status.setOnAction((event) -> {
             System.out.println("CheckBox Action"+this.status.getValue());
             word+=this.status.getValue();
-            String userVote[] = Connect.getUserVoteProblem(Connect.positionProblem(this.topic));
+            int problemId = Connect.positionProblem(this.topic);
+            String userVote[] = Connect.getUserVoteProblem(problemId);
             try{
                 SendFileEmail.send(userVote, "ผลการติดตามปัญหา", word);
             }catch(IOException e){
                 e.printStackTrace();
             }
+            Connect.changeStatus(this.status.getSelectionModel().getSelectedIndex()+1, problemId);
+            if(this.status.getValue().equals("เสร็จสิ้น"))
+                Connect.deleteProblem(problemId);
             /*
             sent email
             change db

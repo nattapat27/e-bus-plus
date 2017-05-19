@@ -22,6 +22,25 @@ public class Connect {
     public static String getUser() {
         return user;
     }
+    
+    public static void deleteProblem(int problemId){
+        try{
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
+            PreparedStatement st = connect.prepareStatement("DELETE FROM user_action_problem WHERE user_action_problem.problem_id=?");
+            st.setInt(1, problemId);
+            st.execute();
+            st = connect.prepareStatement("DELETE FROM problem WHERE problem.problem_id=?");
+            st.setInt(1, problemId);
+            st.execute();
+            connect.close();
+        }catch(ClassNotFoundException e){
+            System.out.println(e);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
+    
     public static String[] getUserVoteProblem(int problemId){
         String[] result = null;
         ArrayList<String> tem = new ArrayList();
@@ -320,8 +339,6 @@ public class Connect {
     }
     
     public static void main(String[] args) {
-        String[] tem = getUserVoteProblem(1);
-        for(int i=0;i<tem.length;i++)
-            System.out.println(tem[i]);
+        deleteProblem(1);
     }
 }
