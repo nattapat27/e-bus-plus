@@ -8,9 +8,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FF8C00;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="login.LoginController">
    <children>
-      <AnchorPane layoutX="100.0" layoutY="107.0" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFD700; -fx-border-color: #000000;">
+      <AnchorPane id="AnchorPane2" layoutX="100.0" layoutY="107.0" prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #000000;" stylesheets="@../css/style.css">
          <children>
             <ImageView fitHeight="133.0" fitWidth="140.0" layoutX="234.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                <image>
