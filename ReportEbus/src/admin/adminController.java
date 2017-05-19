@@ -5,6 +5,7 @@
  */
 package admin;
 
+import PopupUser.PopupUserController;
 import ebus.model.Connect;
 import ebus.model.ProblemAdmin;
 import ebus.model.ProblemImage;
@@ -28,9 +29,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellEditEvent;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 /**
@@ -116,6 +119,35 @@ public class adminController implements Initializable {
         table.getColumns().add(problemImageVoteCol);
 
         table.setItems(Connect.getAllProblemAdmin());
+        
+        table.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent t) {
+                if (t.getClickCount() == 2 && t.isPrimaryButtonDown()) {
+                    Node node = ((Node) t.getTarget()).getParent();
+                    TableRow row;
+                    if (node instanceof TableRow) {
+                        row = (TableRow) node;
+                    } else {
+                        // clicking on text part
+                        row = (TableRow) node.getParent();
+                    }
+                    ProblemAdmin pa = (ProblemAdmin) row.getItem();
+                    //PopupUserController.setProblem();
+                    FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("/PopupUser/PopupUser.fxml"));
+                    Parent root;
+                    try {
+                        root = (Parent) fxmlloader.load();
+                        Stage stage = new Stage();
+                        stage.setScene(new Scene(root));
+                        stage.setResizable(false);
+                        stage.show();
+                    } catch (IOException ex) {
+                        Logger.getLogger(HomeController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+        });
         
         /*Connect.setProblem();
         ObservableList<ProblemImage> allProblem = FXCollections.observableArrayList(Connect.getAllProblem());

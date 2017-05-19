@@ -1,73 +1,35 @@
 package ebus.model;
-
-
-import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.activation.*;
+import java.io.IOException;
+import okhttp3.MultipartBody;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 
 public class SendFileEmail {
-
-   public static void main(String [] args) {     
-      // Recipient's email ID needs to be mentioned.
-      String to = "nattapat27@gmail.com";
-
-      // Sender's email ID needs to be mentioned
-      String from = "nattapat27@gmail.com";
-
-      // Assuming you are sending email from localhost
-      String host = "localhost";
-
-      // Get system properties
-      Properties properties = System.getProperties();
-
-      // Setup mail server
-      properties.setProperty("mail.smtp.host", host);
-
-      // Get the default Session object.
-      Session session = Session.getDefaultInstance(properties);
-
-      try {
-         // Create a default MimeMessage object.
-         MimeMessage message = new MimeMessage(session);
-
-         // Set From: header field of the header.
-         message.setFrom(new InternetAddress(from));
-
-         // Set To: header field of the header.
-         message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
-
-         // Set Subject: header field
-         message.setSubject("This is the Subject Line!");
-
-         // Create the message part 
-         BodyPart messageBodyPart = new MimeBodyPart();
-
-         // Fill the message
-         messageBodyPart.setText("This is message body");
-         
-         // Create a multipar message
-         Multipart multipart = new MimeMultipart();
-
-         // Set text message part
-         multipart.addBodyPart(messageBodyPart);
-
-         // Part two is attachment
-         messageBodyPart = new MimeBodyPart();
-         String filename = "file.txt";
-         DataSource source = new FileDataSource(filename);
-         messageBodyPart.setDataHandler(new DataHandler(source));
-         messageBodyPart.setFileName(filename);
-         multipart.addBodyPart(messageBodyPart);
-
-         // Send the complete message parts
-         message.setContent(multipart );
-
-         // Send message
-         Transport.send(message);
-         System.out.println("Sent message successfully....");
-      }catch (MessagingException mex) {
-         mex.printStackTrace();
-      }
-   }
+    public static String send(String[] emailArr, String subject, String message) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+        okhttp3.MultipartBody.Builder requestBuilder = new MultipartBody.Builder()
+                    .setType(MultipartBody.FORM);
+        requestBuilder.addFormDataPart("from", "KMUTT-e-bus-plus <postmaster@e-bus.pureewat.me>");
+        requestBuilder.addFormDataPart("subject", subject);
+        requestBuilder.addFormDataPart("text", message);
+        for(String sendEach : emailArr) {
+            requestBuilder.addFormDataPart("to", sendEach);
+        }
+        RequestBody requestBody = requestBuilder.build();
+        Request request = new Request.Builder()
+                        .addHeader("content-type", "multipart/form-data")
+                        .addHeader("authorization", "Basic YXBpOmtleS0wODYyZWViNjBhOTdkYWFjOThlODc5ZTliYTVmOTA5ZQ==")
+                        .url("https://api.mailgun.net/v3/e-bus.pureewat.me" + "/messages")
+                        .method("POST", requestBody)
+                        .post(requestBody)
+                        .build();
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+    public static void main(String[] args) throws IOException {
+        String[] mail = {"nattapat27@gmail.com"};
+        send(mail, "test", "test");
+    }
 }
