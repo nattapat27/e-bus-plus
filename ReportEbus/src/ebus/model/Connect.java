@@ -171,6 +171,21 @@ public class Connect {
             System.out.println(ex);
         }
     }
+    public static void removeAction(int problemId,String user){
+        try{
+            Class.forName("org.mariadb.jdbc.Driver");
+            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
+            PreparedStatement st = connect.prepareStatement("DELETE FROM user_action_problem WHERE user_action_problem.problem_id=? and user_action_problem.user_id=?");
+            st.setInt(1, problemId);
+            st.setString(2, user);
+            st.execute();
+            connect.close();
+        }catch(ClassNotFoundException e){
+            System.out.println(e);
+        }catch(Exception e){
+            System.out.println(e);
+        }
+    }
     public static void addAction(int problemId,String user){
         try{
             Class.forName("org.mariadb.jdbc.Driver");
@@ -296,9 +311,6 @@ public class Connect {
         }
         return result;
     }
-    public static void Vote(){
-        
-    }
     public static int[] countProblem(){
         int result[] = new int[4];
         try{
@@ -339,6 +351,6 @@ public class Connect {
     }
     
     public static void main(String[] args) {
-        deleteProblem(1);
+        System.out.println(ckVote(9, "59130500027"));
     }
 }

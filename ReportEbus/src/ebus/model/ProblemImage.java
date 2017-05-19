@@ -23,18 +23,35 @@ public class ProblemImage {
         this.problemType = problemType;
         if(problemButtonVote!=null){
             this.problemButtonVote = problemButtonVote;
-            this.problemButtonVote.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/IconLike.png"))));
-            this.problemButtonVote.setOnAction(new EventHandler<ActionEvent>() {
-                @Override public void handle(ActionEvent e) {
-                    int problemIdAction = Connect.positionProblem(getProblemTopic());
-                    if(Connect.ckVote(problemIdAction, Connect.getUser())){
-                        //Connect.Vote();
-                    }
-                }
-            });
+            int problemIdAction = Connect.positionProblem(getProblemTopic());
+            if(Connect.ckVote(problemIdAction, Connect.getUser())){
+                like(problemIdAction, this.problemButtonVote);
+            }
+            else{
+                unlike(problemIdAction, this.problemButtonVote);
+            }
         }
     }
-
+    
+    private void like(int id,Button button){
+        button.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/IconLike.png"))));
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                Connect.addAction(id, Connect.getUser());
+                unlike(id, button);
+            }
+        });
+    }
+    private void unlike(int id,Button button){
+        button.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("/images/IconDisLike.png"))));
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent e) {
+                Connect.removeAction(id, Connect.getUser());
+                like(id,button);
+            }
+        });
+    }
+    
     public String getProblemNo() {
         return problemNo;
     }
