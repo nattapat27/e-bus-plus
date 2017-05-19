@@ -6,6 +6,7 @@
 package admin;
 
 import ebus.model.Connect;
+import ebus.model.ProblemAdmin;
 import ebus.model.ProblemImage;
 import home.HomeController;
 import java.io.IOException;
@@ -44,18 +45,18 @@ public class adminController implements Initializable {
     @FXML
     private Button logoutButton;
     @FXML
-    private TableView<ProblemImage> table;
+    private TableView<ProblemAdmin> table;
+    /*@FXML
+    private TableColumn<ProblemAdmin, String> problemId;
     @FXML
-    private TableColumn<ProblemImage, String> problemId;
+    private TableColumn<ProblemAdmin, String> problemStatus;
     @FXML
-    private TableColumn<ProblemImage, String> problemStatus;
+    private TableColumn<ProblemAdmin, String> problemName;
     @FXML
-    private TableColumn<ProblemImage, String> problemName;
+    private TableColumn<ProblemAdmin, String> problemType;
     @FXML
-    private TableColumn<ProblemImage, String> problemType;
-    @FXML
-    private TableColumn<ProblemImage, String> action;
-
+    private TableColumn<ProblemAdmin, String> action;
+    */
     @FXML
     public void handleLogoutAction(ActionEvent event) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/login/Login.fxml"));
@@ -86,7 +87,35 @@ public class adminController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Connect.setProblemAdmin();
+        ObservableList<ProblemAdmin> allProblemAdmin = Connect.getAllProblemAdmin();
         
+        TableColumn problemNoCol = new TableColumn<>("No.");
+        problemNoCol.setCellValueFactory(new PropertyValueFactory<>("id"));
+        problemNoCol.setPrefWidth(45.0);
+        table.getColumns().add(problemNoCol);
+
+        TableColumn problemStatusCol = new TableColumn<>("Status");
+        problemStatusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+        problemStatusCol.setPrefWidth(125.0);
+        table.getColumns().add(problemStatusCol);
+
+        TableColumn problemTopicCol = new TableColumn<>("Topic");
+        problemTopicCol.setCellValueFactory(new PropertyValueFactory<>("topic"));
+        problemTopicCol.setPrefWidth(349.0);
+        table.getColumns().add(problemTopicCol);
+
+        TableColumn problemTypeCol = new TableColumn<>("Type");
+        problemTypeCol.setCellValueFactory(new PropertyValueFactory<>("type"));
+        problemTypeCol.setPrefWidth(100.0);
+        table.getColumns().add(problemTypeCol);
+
+        TableColumn problemImageVoteCol = new TableColumn<>("Date");
+        problemImageVoteCol.setCellValueFactory(new PropertyValueFactory<>("date"));
+        problemImageVoteCol.setPrefWidth(77.0);
+        table.getColumns().add(problemImageVoteCol);
+
+        table.setItems(Connect.getAllProblemAdmin());
         
         /*Connect.setProblem();
         ObservableList<ProblemImage> allProblem = FXCollections.observableArrayList(Connect.getAllProblem());
@@ -95,10 +124,10 @@ public class adminController implements Initializable {
         problemStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         problemStatus.setCellFactory(ComboBoxTableCell.forTableColumn(statuschoice));
         problemStatus.setOnEditCommit(new EventHandler<CellEditEvent<ProblemImage, String>>(){
-            @Override
-            public void handle(CellEditEvent<Problem, String> t){
-               ((Problem) t.getTableView().getItems().get(t.getTablePosition().getRow())).setStatus(t.getNewValue());
-            }
+        @Override
+        public void handle(CellEditEvent<Problem, String> t){
+        ((Problem) t.getTableView().getItems().get(t.getTablePosition().getRow())).setStatus(t.getNewValue());
+        }
         });
         problemName.setCellValueFactory(new PropertyValueFactory<>("name"));
         problemType.setCellValueFactory(new PropertyValueFactory<>("type"));

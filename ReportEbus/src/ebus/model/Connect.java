@@ -36,18 +36,18 @@ public class Connect {
             int i=0;
             while(rsProblem.next()){
                 allProblemAdmin.add(new ProblemAdmin(
-                        rsProblem.getString("problem_id"), 
-                        rsProblem.getInt("status_id"), 
+                        rsProblem.getString("problem_name"), 
+                        rsProblem.getInt("status_id")-1, 
                         (i+1), 
                         rsProblem.getString("description"), 
                         "", 
-                        rsProblem.getDate("date")
+                        rsProblem.getDate("problem_date")
                 ));
                 i++;
             }
             i=0;
             while(rsType.next()){
-                allProblemAdmin.get(i).setType("type.type_name");
+                allProblemAdmin.get(i).setType(rsType.getString("type.type_name"));
                 i++;
             }
             

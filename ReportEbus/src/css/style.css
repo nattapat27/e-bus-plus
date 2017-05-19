@@ -1,0 +1,12 @@
+#AnchorPane2{
+    -fx-background-image: url("../images/b.jpg");
+    -fx-background-repeat: stretch;
+}
+#AnchorPane3{
+    -fx-background-image: url("../images/back2.jpg");
+    -fx-background-repeat: stretch;
+}
+#AnchorPane{
+    -fx-background-image: url("../images/black3.jpg");
+    -fx-background-repeat: stretch;
+}
