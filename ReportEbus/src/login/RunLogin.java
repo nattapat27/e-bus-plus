@@ -16,7 +16,6 @@ public class RunLogin extends Application {
         
         Scene scene = new Scene(root,800,600);
         
-        stage.setTitle("Login");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();

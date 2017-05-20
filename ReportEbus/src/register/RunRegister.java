@@ -15,7 +15,6 @@ public class RunRegister extends Application {
         
         Scene scene = new Scene(root,800,600);
         
-        stage.setTitle("Register");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
