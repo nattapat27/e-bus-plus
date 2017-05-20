@@ -81,7 +81,7 @@ public class AddProblemFXMLController implements Initializable {
     }
     @FXML
     public void handleAdminAction(ActionEvent event)throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/admin/Admin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/login/Login.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(root));
         stage.setResizable(false);
