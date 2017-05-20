@@ -64,6 +64,7 @@ public class AddProblemFXMLController implements Initializable {
     public void handleHomeAction(ActionEvent event)throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/home/Home.fxml"));
         Stage stage = new Stage();
+        stage.setTitle("Report e-bus+");
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -74,6 +75,7 @@ public class AddProblemFXMLController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/addProblem/addProblemFXML.fxml"));
  
         Stage stage = new Stage();
+        stage.setTitle("Report e-bus+");
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -83,6 +85,7 @@ public class AddProblemFXMLController implements Initializable {
     public void handleAdminAction(ActionEvent event)throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/login/Login.fxml"));
         Stage stage = new Stage();
+        stage.setTitle("Report e-bus+");
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         ((Node)(event.getSource())).getScene().getWindow().hide();

@@ -15,7 +15,7 @@ public class RunLogin extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
         
         Scene scene = new Scene(root,800,600);
-        
+        stage.setTitle("Report e-bus+");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();

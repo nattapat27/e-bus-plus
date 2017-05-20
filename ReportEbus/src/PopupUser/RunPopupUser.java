@@ -15,7 +15,7 @@ public class RunPopupUser extends Application {
         
         Scene scene = new Scene(root,400,300);
         
-        
+        stage.setTitle("Report e-bus+");
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();

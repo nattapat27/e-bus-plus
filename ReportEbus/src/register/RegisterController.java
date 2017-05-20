@@ -64,6 +64,7 @@ public class RegisterController implements Initializable {
                 Parent root = FXMLLoader.load(getClass().getResource("/login/Login.fxml"));
 
                 Stage stage = new Stage();
+                stage.setTitle("Report e-bus+");
                 stage.setScene(new Scene(root));
                 stage.setResizable(false);
                 ((Node) (event.getSource())).getScene().getWindow().hide();

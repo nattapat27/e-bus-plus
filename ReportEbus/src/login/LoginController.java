@@ -58,6 +58,7 @@ public class LoginController implements Initializable {
         else if(ck<0){//admin
             Parent root = FXMLLoader.load(getClass().getResource("/admin/Admin.fxml"));
             Stage stage = new Stage();
+            stage.setTitle("Report e-bus+");
             stage.setScene(new Scene(root));
             stage.setResizable(false);
             ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -66,6 +67,7 @@ public class LoginController implements Initializable {
         else{//user
             Parent root = FXMLLoader.load(getClass().getResource("/home/Home.fxml"));
             Stage stage = new Stage();
+            stage.setTitle("Report e-bus+");
             stage.setScene(new Scene(root));
             stage.setResizable(false);
             ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -77,6 +79,7 @@ public class LoginController implements Initializable {
     private void handleRegisterAction(ActionEvent event) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/register/Register.fxml"));
         Stage stage = new Stage();
+        stage.setTitle("Report e-bus+");
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         ((Node)(event.getSource())).getScene().getWindow().hide();

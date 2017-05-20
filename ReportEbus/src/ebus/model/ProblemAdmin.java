@@ -52,8 +52,11 @@ public class ProblemAdmin {
             word+=this.status.getValue();
             int problemId = Connect.positionProblem(this.topic);
             String userVote[] = Connect.getUserVoteProblem(problemId);
+            for (int i = 0; i < userVote.length; i++) {
+                System.out.println(userVote[i]);
+            }
             try{
-                SendFileEmail.send(userVote, "ผลการติดตามปัญหา", word);
+                System.out.println(SendFileEmail.send(userVote, "ผลการติดตามปัญหา", word));
             }catch(IOException e){
                 e.printStackTrace();
             }

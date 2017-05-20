@@ -65,6 +65,7 @@ public class adminController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/login/Login.fxml"));
 
         Stage stage = new Stage();
+        stage.setTitle("Report e-bus+");
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -78,6 +79,7 @@ public class adminController implements Initializable {
         try {
             root = (Parent) fxmlloader.load();
             Stage stage = new Stage();
+            stage.setTitle("Report e-bus+");
             stage.setScene(new Scene(root));
             stage.setResizable(false);
             stage.show();
@@ -148,6 +150,7 @@ public class adminController implements Initializable {
                     try {
                         root = (Parent) fxmlloader.load();
                         Stage stage = new Stage();
+                        stage.setTitle("Report e-bus+");
                         stage.setScene(new Scene(root));
                         stage.setResizable(false);
                         stage.show();
