@@ -54,12 +54,6 @@ public class AddProblemFXMLController implements Initializable {
     @FXML
     private ComboBox<String> typesBox;
     @FXML
-    private CheckBox follow;
-    @FXML
-    private TextField mail;
-    @FXML
-    private Text textMail;
-    @FXML
     private Text textAlert;
     @FXML
     public void handleHomeAction(ActionEvent event)throws IOException{
@@ -125,14 +119,6 @@ public class AddProblemFXMLController implements Initializable {
             else 
                 numOfType = 4;
             
-            String email = null;
-            if(follow.isSelected()){    
-                email = mail.getText(); 
-                follow.setSelected(false);
-                mail.setVisible(false);
-                textMail.setVisible(false);
-            }
-            mail.clear();
             Connect.addProblem(name, detail,date, 1, numOfType);
             Connect.addAction(Connect.positionProblem(name), Connect.getUser());
         }
@@ -143,24 +129,10 @@ public class AddProblemFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         textAlert.setVisible(false);
-        mail.setVisible(false);
-        textMail.setVisible(false);
         typesBox.getItems().removeAll(typesBox.getItems());
         typesBox.getItems().addAll("ปัญหารถ", "ปัญหาคนขับ", "ปัญหาแอพ", "อื่นๆ");
         //typesBox.getSelectionModel().select("Option B");
     }    
 
-    @FXML
-    private void handleFollowAction(ActionEvent event) {
-        System.out.println(follow.isSelected());
-        if(follow.isSelected()){
-            mail.setVisible(true);
-            textMail.setVisible(true);
-        }
-        else{
-            mail.setVisible(false);
-            textMail.setVisible(false);
-        }
-    }
     
 }
