@@ -64,7 +64,6 @@ public class LoginController implements Initializable {
             stage.show();
         }
         else{//user
-            Login.setIslogin(true);
             Parent root = FXMLLoader.load(getClass().getResource("/home/Home.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(root));

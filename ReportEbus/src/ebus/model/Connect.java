@@ -351,26 +351,6 @@ public class Connect {
         return result;
     }    
     
-    public static String whoOwn(int problemId){
-        String result = null;
-        try{
-            Class.forName("org.mariadb.jdbc.Driver");
-            Connection connect = DriverManager.getConnection("jdbc:mariadb://10.4.56.23/ebusplus-g2"+"?user=ebusplus&password=ebusplus2017");
-            Statement st = connect.createStatement();
-            ResultSet rs = st.executeQuery("select user_action_problem.user_id from user_action_problem where user_action_problem.problem_id="+problemId);
-            while(rs.next()){
-                if((result = rs.getString("user_action_problem.user_id"))!= null)
-                    break;
-            }
-            connect.close();
-        }catch(ClassNotFoundException e){
-            System.out.println(e);
-        }catch (SQLException ex) {
-            System.out.println(ex);
-        }
-        return result;
-    }
-    
     public static void main(String[] args) {
         removeAction(9, "59130500028");
     }
