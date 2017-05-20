@@ -12,17 +12,13 @@
    <children>
       <AnchorPane id="AnchorPane2" layoutX="100.0" layoutY="107.0" prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: #000000;" stylesheets="@../css/style.css">
          <children>
-            <ImageView fitHeight="133.0" fitWidth="140.0" layoutX="234.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/LoginImage.png" />
-               </image>
-            </ImageView>
             <TextField fx:id="user" layoutX="174.0" layoutY="181.0" prefHeight="39.0" prefWidth="359.0" />
             <Label layoutX="48.0" layoutY="176.0" text="Username">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
+            <PasswordField fx:id="password" layoutX="174.0" layoutY="247.0" prefHeight="39.0" prefWidth="359.0" />
             <Label layoutX="51.0" layoutY="251.0" text="Password">
                <font>
                   <Font name="System Bold" size="24.0" />
@@ -30,10 +26,14 @@
             </Label>
             <Button fx:id="loginButtton" layoutX="323.0" layoutY="322.0" minHeight="-Infinity" mnemonicParsing="false" onAction="#handleLoginAction" prefHeight="50.0" prefWidth="130.0" text="Login" />
             <Button fx:id="registerButton" layoutX="169.0" layoutY="322.0" mnemonicParsing="false" onAction="#handleRegisterAction" prefHeight="50.0" prefWidth="130.0" text="Register" />
-            <PasswordField fx:id="password" layoutX="174.0" layoutY="247.0" prefHeight="39.0" prefWidth="359.0" />
             <Text fx:id="alretText" layoutX="185.0" layoutY="311.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username or password incorrect">
                <font>
                   <Font name="Angsana New" size="27.0" />
+               </font>
+            </Text>
+            <Text fill="#363636" layoutX="150.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Report e-Bus+">
+               <font>
+                  <Font name="System Bold" size="44.0" />
                </font>
             </Text>
          </children>

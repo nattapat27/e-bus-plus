@@ -26,6 +26,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -65,6 +66,7 @@ public class AddProblemFXMLController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/home/Home.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Report e-bus+");
+        stage.getIcons().add(new Image("/images/ProblemImage.png"));
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -76,6 +78,7 @@ public class AddProblemFXMLController implements Initializable {
  
         Stage stage = new Stage();
         stage.setTitle("Report e-bus+");
+        stage.getIcons().add(new Image("/images/ProblemImage.png"));
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -86,6 +89,7 @@ public class AddProblemFXMLController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/login/Login.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Report e-bus+");
+        stage.getIcons().add(new Image("/images/ProblemImage.png"));
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         ((Node)(event.getSource())).getScene().getWindow().hide();

@@ -61,6 +61,7 @@ public class HomeController implements Initializable {
 
         Stage stage = new Stage();
         stage.setTitle("Report e-bus+");
+        stage.getIcons().add(new Image("/images/ProblemImage.png"));
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -74,6 +75,7 @@ public class HomeController implements Initializable {
 
         Stage stage = new Stage();
         stage.setTitle("Report e-bus+");
+        stage.getIcons().add(new Image("/images/ProblemImage.png"));
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -86,6 +88,7 @@ public class HomeController implements Initializable {
 
         Stage stage = new Stage();
         stage.setTitle("Report e-bus+");
+        stage.getIcons().add(new Image("/images/ProblemImage.png"));
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -150,6 +153,8 @@ public class HomeController implements Initializable {
                     try {
                         root = (Parent) fxmlloader.load();
                         Stage stage = new Stage();
+                        stage.setTitle("Report e-bus+");
+                        stage.getIcons().add(new Image("/images/ProblemImage.png"));
                         stage.setScene(new Scene(root));
                         stage.setResizable(false);
                         stage.show();

@@ -33,6 +33,7 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.ComboBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -66,6 +67,7 @@ public class adminController implements Initializable {
 
         Stage stage = new Stage();
         stage.setTitle("Report e-bus+");
+        stage.getIcons().add(new Image("/images/ProblemImage.png"));
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -80,6 +82,7 @@ public class adminController implements Initializable {
             root = (Parent) fxmlloader.load();
             Stage stage = new Stage();
             stage.setTitle("Report e-bus+");
+            stage.getIcons().add(new Image("/images/ProblemImage.png"));
             stage.setScene(new Scene(root));
             stage.setResizable(false);
             stage.show();
@@ -151,6 +154,7 @@ public class adminController implements Initializable {
                         root = (Parent) fxmlloader.load();
                         Stage stage = new Stage();
                         stage.setTitle("Report e-bus+");
+                        stage.getIcons().add(new Image("/images/ProblemImage.png"));
                         stage.setScene(new Scene(root));
                         stage.setResizable(false);
                         stage.show();

@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -59,6 +60,7 @@ public class LoginController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/admin/Admin.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Report e-bus+");
+            stage.getIcons().add(new Image("/images/ProblemImage.png"));
             stage.setScene(new Scene(root));
             stage.setResizable(false);
             ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -68,6 +70,7 @@ public class LoginController implements Initializable {
             Parent root = FXMLLoader.load(getClass().getResource("/home/Home.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Report e-bus+");
+            stage.getIcons().add(new Image("/images/ProblemImage.png"));
             stage.setScene(new Scene(root));
             stage.setResizable(false);
             ((Node)(event.getSource())).getScene().getWindow().hide();
@@ -80,6 +83,7 @@ public class LoginController implements Initializable {
         Parent root = FXMLLoader.load(getClass().getResource("/register/Register.fxml"));
         Stage stage = new Stage();
         stage.setTitle("Report e-bus+");
+        stage.getIcons().add(new Image("/images/ProblemImage.png"));
         stage.setScene(new Scene(root));
         stage.setResizable(false);
         ((Node)(event.getSource())).getScene().getWindow().hide();
